@@ -1,17 +1,16 @@
-'use client'
+"use client";
 
 import { ChangeEvent, useState } from "react";
 import { FaSearchDollar } from "react-icons/fa";
+
 import Liveauction from "./components/Part2/Liveauction";
 import Card from "./components/Card/Card";
 import Image from "next/image";
 import Collections from "./components/Collections/Collections";
 
 export default function Home() {
+  const [activeSearch, setActiveSearch] = useState([]);
 
-  const [activeSearch, setActiveSearch] = useState([])
-
-   
   function handleSearch(e: ChangeEvent<HTMLInputElement>): void {
     throw new Error("Function not implemented.");
   }
@@ -76,46 +75,12 @@ export default function Home() {
           <Collections />
         </div>
 
-        <div className="rightpart">
-
-           <Image src={"/images/imfo.png"} alt=" main image" width={400} height={350}/>
-
-                 <div className="dropdown dropdown-right ml-4 flex">
-                 <button  className="border-white bottom-2  text-center bg-gray-400 rounded-2xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border  m-4 p-2 flex justify-around content-baseline">
-             <p className="text-sm"> Highest Bid🔥</p>
-              
-               </button>
-     
-               <button  className="border-white bottom-2  bg-blue-700   rounded-2xl  backdrop-blur-sm  border  m-4 p-2 ">
-                  
-             <span className=" text-2xl font-semibold text-white ">Place Bid</span>
-               </button>
-                  
-                  </div>           
-           
-
-
-
+        <div className="m-7 w-[90%] border border-blue-600 rounded-xl mx-auto shadow-[5px_5px_0px_0px_rgba(109,40,217)]">
+          <Liveauction />
         </div>
 
-
-        </div>
-
-
-
-
-
-      </div>
-
-
-   <div className="m-7 w-[90%] border border-blue-600 rounded-xl mx-auto shadow-[5px_5px_0px_0px_rgba(109,40,217)]">
-   <Liveauction/>
-
-   </div>
-
-   <div className="w-[90%] mx-auto ">
-   <p className="font-bold text-xl text-[#9951FF]">
-
+        <div className="w-[90%] mx-auto ">
+          <p className="font-bold text-xl text-[#9951FF]">
             Trending collections
           </p>
           <div className="w-full border rounded-md border-blue-500  p-7 grid grid-cols-3 grid-flow-row shadow-[5px_5px_0px_0px_rgba(109,40,217)] ">
@@ -128,26 +93,14 @@ export default function Home() {
             <Card />
           </div>
         </div>
-
-
-
-   </div>
-<div className="grid grid-cols-3 grid-flow-row gap-4 my-28 mx-10">
-
-<Card/>
-<Card/>
-<Card/>
-<Card/>
-<Card/>
-
-</div>
-      
- <div></div>
-          
-
+        <div className="grid grid-cols-3 grid-flow-row gap-4 my-28 mx-10">
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+        </div>
+      </div>
     </div>
-
-
-    
   );
 }
