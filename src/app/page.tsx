@@ -80,27 +80,13 @@ export default function Home() {
               </button>
             </div>
           </div>
-          <Collections />
         </div>
 
         <div className="m-7 w-[90%] border border-blue-600 rounded-xl mx-auto shadow-[5px_5px_0px_0px_rgba(109,40,217)]">
           <Liveauction />
         </div>
 
-        <div className="w-[90%] mx-auto ">
-          <p className="font-bold text-xl text-[#9951FF]">
-            Trending collections
-          </p>
-          <div className="w-full border rounded-md border-blue-500  p-7 grid grid-cols-3 grid-flow-row shadow-[5px_5px_0px_0px_rgba(109,40,217)] ">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-          </div>
-        </div>
+        
         <div className="grid grid-cols-3 grid-flow-row gap-4 my-28 mx-10">
           <Card />
           <Card />
@@ -108,6 +94,8 @@ export default function Home() {
           <Card />
           <Card />
         </div>
+        <Collections />
+
       </div>
     </div>
   );
