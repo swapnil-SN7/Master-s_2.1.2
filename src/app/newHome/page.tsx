@@ -1,14 +1,17 @@
 "use client";
-
+import Dropdown from "@/components/Dropdown";
 import { Auction } from "@prisma/client";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Landing from "@/components/Landing/Landing";
 
 function AuctionCard({ title, description, startTime, endTime }: Auction) {
   return <div>{/* display the auction card */}</div>;
 }
 
 export default function Home() {
+
+  
   const [auctions, setAuctions] = useState<Auction[]>([]);
   console.log(auctions);
 
@@ -35,96 +38,114 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex min-h-screen flex-col items-left justify-between p-10">
-      <div className="container mt-24 mx-auto px-12 py-3">
-        <section className="live-auctions">
-          <h1 className="text-left font-bold text-4xl text-black">
-            Live Auctions
-          </h1>
-          <div className="grid grid-cols-3">
-            {liveAuctions.map((item, index) => (
-              // <div className="csmall_card mt-8 mx-8" key={index}>
-              //   <h1 className="text-center">{item.title}</h1>
-              //   <p>{item.description}</p>
-
-              //   <span>Start Time: {item.startTime.toLocaleString()}</span>
-              //   <span>End Time: {item.endTime.toLocaleString()}</span>
-              // </div>
-              
-    //           <div key={index} className="auction">
-    //           <div className="card card relative  h-[80%] w-[95%] bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 p-7 lg:h-fit lg:py-16  drop-shadow-lg ring-cyan-500 ">
-    //           <div className="flex justify-center gap-7 ">
-    //           <div className="text-blue-500 font-bold">{item.title}</div>
-    //           <p  className='text-lg font-bold border rounded-lg border-blue-400 w-[30%]  text-center'>{item.id}</p>
-    //           </div>
-    //           <div className="border rounded-xl h-[80%] border-gray-900 drop-shadow-lg bg-blue/60 text-center p-3 m-5 lg:p-7">
-    //               <p className=" text-blue-500 font-semibold drop-shadow-md ">Description:</p>
-    //               <p> {`${item.description}`}</p>
-    //           </div>
-              
-              
-    //           <div className="flex justify-around gap-4">
-    //           <p className="text-sm">Start Date;- {item.startTime.toString()}</p>
-    //           <p className="text-sm">End Date;- {item.endTime.toString()}</p>
-    //           </div>
-              
+    <Landing/>>
 
 
-    //           </div>
+
+<div className="w-11/12 mx-auto p-7">
 
 
+<div>
+  
+
+
+</div> 
+  <div className="All_data flex justify-between items-center gap-4">
+
+  <div className="leftpart">
+  <p className="p-2 font-extrabold text-2xl text-[#6900FF]">Live Auction</p> 
+   <button className="btn border rounded-xl  border-blue-500 ring-yellow-500 p-1 ">
+       ^$# Live Auction
+   </button>
       
-    // </div>
-    <div className="card relative  h-[80%] w-[95%] bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 p-7 m-4 content-center mx-auto"  key={index}>
-    <div className="content-center font-medium mx-auto"  > 
-  <p className="font-medium text-blue-400 text-xl">Title</p>
-    </div>
-     <div className="ds mx-auto">
-        <h1 className=" font-bold text-sm">Description</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, soluta.</p>
+
+      <div className="flex justify-center gap-2">
+      <Dropdown val={"Sort"}/>
+     <Dropdown val={"Filter"}/>
+      </div>
+     
+     <div className=" grid-cols-2 grid-flow-row gap-y-8 gap-x-4 sm:grid">
+     {liveAuctions.map((item, index) => (
+             
+                      <div key={index} className="card relative  h-[80%] w-[95%] bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 p-7 m-4 content-center mx-auto" >
+                      <div className="content-center font-medium mx-auto"  > 
+                    <p className="font-medium text-blue-400 text-xl">{item.title}</p>
+                      </div>
+                        <div className="ds mx-auto">
+                          <h1 className=" font-bold text-sm">Description</h1>
+                          <p>{item.description}</p>
+                        </div>
+          
+                        <div className="flex justify-around gap-4 m-4 border rounded-md p-2 border-[#AEE2FF]">
+          <p className="text-sm">Start Date;- {item.startTime.toString()}</p>
+          <p className="text-sm">End Date;- {item.endTime.toString()}</p>
+          </div>
+          
+              <div className=" mx-auto">
+              <button className="border tracking tracking-wide border-[#AEE2FF] hover:border-[#B799FF] rounded-lg m-[2%]" >
+                      <p className="text-base p-1 text-blue-500">View Collections</p>
+                  </button>
+                                  
+              </div>
+            
+          
+                  </div>
+ 
+
+
+          ))}
+
+
      </div>
 
-     <div className="flex justify-around gap-4 m-4 border rounded-md p-2 border-[#AEE2FF]">
-<p className="text-sm">Start Date;- {"12-2"}</p>
-<p className="text-sm">End Date;- {"12-4"}</p>
-</div>
-
-<div className="flex mx-auto">
-<button className="border tracking tracking-wide border-[#AEE2FF] hover:border-[#B799FF] rounded-lg m-[2%]" >
-    <p className="text-base p-1 text-blue-500">View Collections</p>
-</button>
+  </div>
 
 
-<button className="border tracking tracking-wide border-[#AEE2FF] hover:border-[#B799FF] rounded-2xl bg-blue-500 p-1 ml-3" >
-    <p className="text-md font-bold text-white">Place Bid</p>
-</button>
+  </div>
+  <div className="rightpart w-full">
+   <div className="grid grid-cols-2 grid-flow-row gap-y-6 p-7 border rounded-lg ring-2 drop-shadow-xl content-center ">
+   <h2 className="font-bold text-[#6900FF] text-lg">Upcoming Auction</h2>
 
-</div>
+   {upcomingAuctions.map((item, index) => (
 
+              <div  key={index} className="card flex gap-3 border rounded-lg border-[#AEE2FF] shadow-xl drop-shadow-lg p-4">
+              <div className="part1 ">
+                  <div>
+                      <img src="/images/auction.png" alt=""  height={50} width={50}/>
+                      <div>
+                          <p className="font-light">{item.id}</p>
+                          <p className=" font-bold"> {item.title}</p>
+                      </div>
+                  </div>
+                  <button className="w-full border rounded-lg border-blue-200 p-1 ">
+                      <p className="text-sm">Starts on :  {item.startTime.toString()}</p>
+                      <p className="text-sm">Ends on :  {item.endTime.toString()}</p>
+                      
+                  </button>
 
-</div>
-
-
-            ))}
-          </div>
-        </section>
-        <section className="upcoming-auctions">
-          <h1 className="text-left font-bold text-4xl text-black">
-            Upcoming Auctions
-          </h1>
-          <div className="grid grid-cols-3">
-            {upcomingAuctions.map((item, index) => (
-              <div className="csmall_card mt-8 mx-8" key={index}>
-                <h1 className="text-center">{item.title}</h1>
-                <p>{item.description}</p>
-
-                <span>Start Time: {item.startTime.toLocaleString()}</span>
-                <span>End Time: {item.endTime.toLocaleString()}</span>
               </div>
-            ))}
-          </div>
-        </section>
-      </div>
-    </main>
+              <div className="part2">
+                  <h2 className="font-bold text-blue-700 text-xl mb-[9%]">{item.organiserId}</h2>
+                  <button className="border tracking tracking-wide border-[#AEE2FF] hover:border-[#B799FF] rounded-2xl bg-blue-500 p-1 ml-3" >
+              <p className="text-md font-bold text-white">Place Bid</p>
+              </button>
+              </div>
+
+              </div>
+
+              
+             ))}
+
+      
+      
+
+       
+   </div>
+</div>
+
+
+ </div>
+
+
   );
 }

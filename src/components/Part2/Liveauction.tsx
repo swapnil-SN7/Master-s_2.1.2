@@ -27,7 +27,7 @@ const Liveauction =()=>{
      
     
      </div> 
-       <div className="All_data flex justify-between items-center gap-4">
+       <div className="All_data flex justify-between items-center gap-2">
 
        <div className="leftpart">
        <p className="p-2 font-extrabold text-2xl text-[#6900FF]">Live Auction</p> 
@@ -53,23 +53,24 @@ const Liveauction =()=>{
           </div>
 
        </div>
-     <div className="rightpart">
-
-
-        <div className="grid grid-cols-1 grid-flow-row gap-y-6 p-7 border rounded-lg ring-2 drop-shadow-xl ">
-           <h2 className="font-bold text-[#6900FF] text-lg">Top Bids</h2>
-            <Smallcard/>
-            <Smallcard/>
-            <Smallcard/>
-            <Smallcard/>
-            <Smallcard/>
-            
-
-            
-        </div>
-     </div>
-
+    
        </div>
+       <div className="rightpart">
+
+
+<div className="grid grid-cols-1 grid-flow-row gap-y-6 p-16 border rounded-lg ring-2 drop-shadow-xl w-full  ">
+   <h2 className="font-bold text-[#6900FF] text-lg">Top Bids</h2>
+    <Smallcard/>
+    <Smallcard/>
+    <Smallcard/>
+    <Smallcard/>
+    <Smallcard/>
+    
+
+    
+</div>
+</div>
+
     
 
       </div>
