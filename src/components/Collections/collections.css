@@ -1,8 +1,8 @@
 .collection_card{
-    background: rgba(5, 79, 148, 0.25);
+    background: rgba(150, 169, 188, 0.25);
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 8px );
-    -webkit-backdrop-filter: blur( 8px );
+    backdrop-filter: blur( 5px );
+    -webkit-backdrop-filter: blur( 5px );
     border-radius: 10px;
 width: 90vw;
 height: 100vh;
@@ -12,7 +12,7 @@ justify-content: space-between;
 flex-wrap: wrap; */
 }
 .csmall_card{
-    background: rgba( 30, 92, 145, 0.25 );
+    background: rgba(217, 225, 232, 0.25);
 box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
 backdrop-filter: blur( 8px );
 -webkit-backdrop-filter: blur( 8px );
