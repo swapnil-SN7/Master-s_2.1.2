@@ -3,6 +3,7 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { FaSearchDollar } from "react-icons/fa";
 
+
 import Liveauction from "../components/Part2/Liveauction";
 import Card from "../components/Card/Card";
 import Image from "next/image";
@@ -26,7 +27,7 @@ export default function Home() {
 
   return (
     <div className="home">
-      <div className="part_one  mx-auto   border-gray-300 border relative  pb-32 z-30  ">
+      <div className="part_one  mx-auto   border-gray-700 border relative  pb-32 z-30 shadow-2xl  drop-shadow-md  ">
         <div className="searchbar  flex justify-center mb-8  absolute -top-5 left-96">
           <form className="w-[500px] relative">
             <div className="relative">
@@ -44,20 +45,25 @@ export default function Home() {
         </div>
 
         <div className="flex flex-row justify-center  mt-24">
-          <div className="leftpart pr-20 ">
+          <div className="leftpart pr-20 pt-[10%] ">
             <p className="text-2xl font-extrabold text-opacity-80 text-[#6900FF]">
               &quot;Unlock the thrill of winning with every click – bid, win,
               repeat!&quot;
             </p>
+            <Image alt="hero" src={"/images/image.png"} height={400} width={350} className="mx-auto mb-4"/>
 
-            <button className="border-white bottom-2  bg-gray-400 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border  m-4 p-2 flex justify-around content-baseline">
+                <div className="mx-auto">
+                <button className="border-white bottom-2  bg-gray-400 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border  m-4 p-2 flex justify-around content-baseline">
               <div className="bg-[#FFD700] size-3  rounded-lg m-1 "></div>
-              <span>Trending NFT&apos;s🔥</span>
+              <span>Buy trending Bid&apos;s🔥</span>
             </button>
 
-            <button className="bottom-2  bg-blue-400 rounded-md  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border  m-1 p-3 ml-3  ">
-              Time left -10:30 min
+            <button className="bottom-2  bg-blue-400 rounded-md  font-bold bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border  m-1 p-3 ml-3  ">
+              Join Online Auction Now
             </button>
+
+                </div>
+            
           </div>
 
           <div className="rightpart">
@@ -94,8 +100,10 @@ export default function Home() {
         </div>
 
         
-       
-        <Collections />
+          <div className="mx-auto w-[90%]">
+          <Collections />
+            </div>       
+        
     </div>
   );
 }
