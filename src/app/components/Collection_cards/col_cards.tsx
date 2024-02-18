@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const col_cards = ({  title, description, gitUrl }) => {
+const col_cards = ({  title, description, gitUrl,imgurl }) => {
   return (
     <div>
       <div
@@ -15,7 +15,7 @@ const col_cards = ({  title, description, gitUrl }) => {
             className="h-14 w-14 mr-2 border-2 relative rounded-full border-[#ADB7BE] hover:border-white group/link"
           >
             <Image 
-            src={"/images/code.png"}
+            src={}
             width={50}
             height={50}
             className="h-10 w-10 text-[#ADB7BE] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  cursor-pointer group-hover/link:text-white" />
