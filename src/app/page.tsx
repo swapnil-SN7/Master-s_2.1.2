@@ -3,10 +3,10 @@
 import { ChangeEvent, useState } from "react";
 import { FaSearchDollar } from "react-icons/fa";
 
-import Liveauction from "./components/Part2/Liveauction";
-import Card from "./components/Card/Card";
+import Liveauction from "../components/Part2/Liveauction";
+import Card from "../components/Card/Card";
 import Image from "next/image";
-import Collections from "./components/Collections/Collections";
+import Collections from "../components/Collections/Collections";
 
 export default function Home() {
   const [activeSearch, setActiveSearch] = useState([]);
@@ -24,8 +24,7 @@ export default function Home() {
               <input
                 type="search"
                 placeholder="Type Here"
-                className="w-full text-cyan-50 p-4 bg-gray-400 rounded-full bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100
-               "
+                className="w-full text-cyan-50 p-4 bg-gray-400 rounded-full bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100"
                 onChange={(e) => handleSearch(e)}
               />
               <button className="absolute right-1 top-1/2 -translate-y-1/2 p-4 bg-[#6900FF] rounded-full">
