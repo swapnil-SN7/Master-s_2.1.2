@@ -15,8 +15,8 @@ const Collections = () => {
             <Image
               className="mx-auto"
               alt=""
-              height={200}
-              width={200}
+              height={150}
+              width={150}
               src="/images/auction.png"
             />
             <h1 className="text-center text-xl font-bold mt-4">
