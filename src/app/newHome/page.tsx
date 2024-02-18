@@ -12,15 +12,20 @@ export default function Home() {
   const [auctions, setAuctions] = useState<Auction[]>([]);
   console.log(auctions);
 
-  const currentTime = Date.now();
+  const currentTimeString = new Date().toISOString();
+  const currentTime = new Date(currentTimeString).getTime();
 
-  const liveAuctions = auctions.filter(
-    (auction) => currentTime >= auction.startTime.getTime()
-  );
+  const liveAuctions = auctions.filter((auction) => {
+    const startTimeString = new Date(auction.startTime).toISOString();
+    const startTime = new Date(startTimeString).getTime();
+    return currentTime >= startTime;
+  });
 
-  const upcomingAuctions = auctions.filter(
-    (auction) => currentTime < auction.startTime.getTime()
-  );
+  const upcomingAuctions = auctions.filter((auction) => {
+    const startTimeString = new Date(auction.startTime).toISOString();
+    const startTime = new Date(startTimeString).getTime();
+    return currentTime < startTime;
+  });
 
   useEffect(() => {
     (async () => {
