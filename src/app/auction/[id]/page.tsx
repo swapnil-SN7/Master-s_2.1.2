@@ -7,6 +7,7 @@ export default function Auctiondetails({ params }: { params: { id: string } }) {
   const [auction, setAuction] = useState<Auction>();
   console.log(auction);
 
+
   useEffect(() => {
     (async () => {
       const res = await axios.post("/api/getAuctionDetails", {
@@ -15,6 +16,35 @@ export default function Auctiondetails({ params }: { params: { id: string } }) {
       setAuction(res.data.auction_details);
     })();
   }, [params.id]);
+  
 
-  return <div>Auction</div>;
+  return (
+ 
+    <div className="container">
+    <div>
+      {
+      auction.map((item, index) => (
+        <div key={index} className="auction">
+          <div className="Maintitle mx-auto">
+            <h3>{item.title}</h3>
+          </div>
+          <div className="otherdetails">
+            <p>Description: {item.description}</p>
+            <p>Start Time: {item.startTime}</p>
+            <p>End Time: {item.endTime}</p>
+          </div>
+          <div className="grid grid-cols-5 grid-flow-row gap-4 my-10">
+            {item.listedItem.map((listed, idx) => (
+              <div key={idx} className="listed-item">
+               
+              </div>
+            ))}
+          </div>
+        </div>
+      ))
+      }
+    </div>
+  </div>
+  
+  );
 }
