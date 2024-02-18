@@ -9,7 +9,7 @@ const Smallcard = ()=>{
               <div className="card flex gap-3 border rounded-lg border-[#AEE2FF] shadow-xl drop-shadow-lg p-4">
                 <div className="part1 ">
                     <div>
-                        <img src="/images/auction.png" alt="" />
+                        <img src="/images/auction.png" alt=""  height={50} width={50}/>
                         <div>
                             <p className="font-light">Auction:Type</p>
                             <p className=" font-bold"> NFT  Name</p>
