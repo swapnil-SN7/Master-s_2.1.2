@@ -33,8 +33,8 @@ export default function Home() {
 
   return (
     <div className="home">
-      <div className="part_one  mx-auto   border-gray-700 border relative  pb-32 z-30 shadow-2xl  drop-shadow-md  ">
-        <div className="searchbar  flex justify-center mb-8  absolute -top-5 left-96">
+      <div className="part_one  mx-auto   border-gray-700  relative  pb-32 z-30 shadow-2xl  drop-shadow-md   border-top-none">
+        <div className="searchbar  flex justify-center mb-8  absolute -top-5 left-96 z-35">
           <form className="w-[500px] relative">
             <div className="relative">
               <input
@@ -59,7 +59,7 @@ export default function Home() {
             <Image alt="hero" src={"/images/image.png"} height={400} width={350} className="mx-auto mb-4"/>
 
                 <div className="mx-auto">
-                <button className="border-white bottom-2  bg-gray-400 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border  m-4 p-2 flex justify-around content-baseline">
+                <button className="border-white bottom-2  text-center bg-gray-400 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border  m-4 p-2 flex justify-around content-baseline">
               <div className="bg-[#FFD700] size-3  rounded-lg m-1 "></div>
               <span>Buy trending Bid&apos;s🔥</span>
             </button>
@@ -80,9 +80,9 @@ export default function Home() {
               height={350}
             />
 
-            <div className="dropdown dropdown-right ml-4 flex">
-              <button className="border-white bottom-2  text-center bg-gray-400 rounded-2xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border  m-4 p-2 flex justify-around content-baseline">
-                <p className="text-sm"> Highest Bid🔥</p>
+            <div className="dropdown dropdown-right ml-4 flex mt-[12%]">
+              <button className="border-white bottom-2  text-center mx-auto bg-gray-400 rounded-2xl  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border  m-4 p-2 flex justify-around content-baseline">
+                <p className="text-sm text-center p-[1.2%]"> Highest Bid🔥</p>
               </button>
 
               <button className="border-white bottom-2  bg-blue-700   rounded-2xl  backdrop-blur-sm  border  m-4 p-2 ">
