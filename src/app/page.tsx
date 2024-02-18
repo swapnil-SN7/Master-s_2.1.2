@@ -1,15 +1,24 @@
 "use client";
 
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { FaSearchDollar } from "react-icons/fa";
 
 import Liveauction from "../components/Part2/Liveauction";
 import Card from "../components/Card/Card";
 import Image from "next/image";
 import Collections from "../components/Collections/Collections";
+import axios from "axios";
 
 export default function Home() {
   const [activeSearch, setActiveSearch] = useState([]);
+  const [auctions, setAuctions] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const res = await axios.get("/api/getAllAuctions");
+      setAuctions(res.data.auctions);
+    })();
+  }, []);
 
   function handleSearch(e: ChangeEvent<HTMLInputElement>): void {
     throw new Error("Function not implemented.");
