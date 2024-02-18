@@ -5,9 +5,19 @@ import Card from "../Card/Card";
 import Dropdown from "../Dropdown";
 // import Smallcard from "@components/Smallcard/Smallcard"
 import Smallcard from "../Smallcard/Smallcard";
-
+import { useState,useEffect } from "react";
+import axios from "axios";
 const Liveauction =()=>{
+  const [auctions, setAuctions] = useState([]);
 
+  useEffect(() => {
+    (async () => {
+      const res = await axios.get("/api/getAllAuctions");
+      let auctiondata =await res.data.auctions;
+      setAuctions(auctiondata);
+      console.log(auctiondata)
+    })();
+  }, []);
     return(
       <div className="w-11/12 mx-auto p-7">
 
