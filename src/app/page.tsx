@@ -72,7 +72,6 @@ export default function Home() {
         <Collections/>
       </div>
 
-    
     </main>
   );
 }
