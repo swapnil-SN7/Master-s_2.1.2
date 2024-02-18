@@ -32,7 +32,7 @@ export default function Home() {
 
   return (
     <div className="home">
-      <div className="part_one  mx-auto   border-gray-300 border relative  pb-32 bg-gray-300 z-30  ">
+      <div className="part_one  mx-auto   border-gray-300 border relative  pb-32 z-30  ">
         <div className="searchbar  flex justify-center mb-8  absolute -top-5 left-96">
           <form className="w-[500px] relative">
             <div className="relative">
@@ -88,21 +88,20 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="m-7 w-[90%] border border-blue-600 rounded-xl mx-auto shadow-[5px_5px_0px_0px_rgba(109,40,217)]">
+       
+
+        
+      
+
+      </div>
+      <div className="m-7 w-[90%] border border-blue-600 rounded-xl mx-auto shadow-[5px_5px_0px_0px_rgba(109,40,217)]">
           <Liveauction />
+         
         </div>
 
         
-        <div className="grid grid-cols-3 grid-flow-row gap-4 my-28 mx-10">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-        </div>
+       
         <Collections />
-
-      </div>
     </div>
   );
 }

@@ -23,16 +23,17 @@ const Liveauction =()=>{
 
 
      <div>
-        <p className="p-2 font-extrabold text-2xl text-[#6900FF]">Live Auction</p> 
-        <button className="btn border rounded-xl  border-blue-500 ring-yellow-500 p-1 ">
-            ^$# Live Auction
-        </button>
+       
      
     
      </div> 
        <div className="All_data flex justify-between items-center gap-4">
 
        <div className="leftpart">
+       <p className="p-2 font-extrabold text-2xl text-[#6900FF]">Live Auction</p> 
+        <button className="btn border rounded-xl  border-blue-500 ring-yellow-500 p-1 ">
+            ^$# Live Auction
+        </button>
            
 
            <div className="flex justify-center gap-2">
