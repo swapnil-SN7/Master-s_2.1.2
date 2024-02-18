@@ -5,6 +5,7 @@ import { FaSearchDollar } from "react-icons/fa";
 import Image from "next/image";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import Collections from "./components/Collections/Collections";
 export default function Home() {
   const [activeSearch, setActiveSearch] = useState([]);
 
@@ -68,6 +69,8 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </div>
+
       </div>
     </main>
   );
