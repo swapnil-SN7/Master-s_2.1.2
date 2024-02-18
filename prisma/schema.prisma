@@ -49,19 +49,22 @@ model Bidder {
 }
 
 model Organiser {
-  id         String  @id @default(uuid())
+  id         String    @id @default(uuid())
   name       String
-  email      String  @unique
-  isVerified Boolean @default(false)
+  email      String    @unique
+  isVerified Boolean   @default(false)
+  auctions   Auction[]
 }
 
 model Auction {
-  id          String   @id @default(uuid())
+  id          String     @id @default(uuid())
   title       String
   description String
   startTime   DateTime
   endTime     DateTime
   listedItems Item[]
+  Organiser   Organiser? @relation(fields: [organiserId], references: [id])
+  organiserId String?
 }
 
 model Payment {
