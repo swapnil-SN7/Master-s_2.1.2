@@ -53,7 +53,7 @@ export default function Home() {
           </div>
 
           <div className="rightpart">
-            <Image alt="" height={30} width={30} src="/images/filter.png" />
+            <Image alt="" height={30} width={30} src="/images/auction.jpg" />
 
             <div className="dropdown dropdown-right ml-4 flex">
               <button className="border-white bottom-2  text-center bg-gray-400 rounded-full bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border  m-4 p-2 flex justify-around content-baseline">
