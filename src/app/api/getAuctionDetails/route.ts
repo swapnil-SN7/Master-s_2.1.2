@@ -21,7 +21,8 @@ export async function POST(req: Request) {
       where: {
         id: auc_id,
       },
-      include: {
+      select: {
+        title: true,
         listedItems: true,
       },
     });
