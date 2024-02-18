@@ -3,15 +3,13 @@
 @tailwind utilities;
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  .part_one{
-   
-    margin-top: 7.64%;
-     width: 90%;
-     border-radius: 3rem;
-    
+.part_one {
+  margin-top: 7.64%;
+  width: 90%;
+  border-radius: 3rem;
 }
