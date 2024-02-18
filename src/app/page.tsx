@@ -1,11 +1,8 @@
-
-
-
-
-'use client'
+"use client";
 
 import { ChangeEvent, useState } from "react";
 import { FaSearchDollar } from "react-icons/fa";
+
 import Liveauction from "./components/Part2/Liveauction";
 import Card from "./components/Card/Card";
 import Image from "next/image";
@@ -14,14 +11,12 @@ import Image from "next/image";
 
 import './globals.css'
 export default function Home() {
+  const [activeSearch, setActiveSearch] = useState([]);
 
-  const [activeSearch, setActiveSearch] = useState([])
-
-   
   function handleSearch(e: ChangeEvent<HTMLInputElement>): void {
     throw new Error("Function not implemented.");
   }
-
+  
   return(
     <div  className="home">
 
@@ -79,21 +74,10 @@ export default function Home() {
                </button>
                   
                   </div>           
-           
-
-
-
+ 
         </div>
-
-
-        </div>
-
-
-
-
-
+        <Collections/>
       </div>
-
 
    <div className="m-7 w-[90%] border border-blue-600 rounded-xl mx-auto shadow-[5px_5px_0px_0px_rgba(109,40,217)]">
    <Liveauction/>
@@ -129,8 +113,5 @@ export default function Home() {
 
           
     </div>
-
-
-    
   );
 }
