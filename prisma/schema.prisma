@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+model Item {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  tags        String[]
+  has3dModel  Boolean
+  basePrice   Float
+  startTime   DateTime
+  endTime     DateTime
+  bid         Bid[]
+  bidder      Bidder?  @relation(fields: [bidderId], references: [id])
+  bidderId    String?
+  auction     Auction  @relation(fields: [auctionId], references: [id])
+  auctionId   String
+  payment     Payment?
+}
+
+model Bid {
+  id       String @id @default(uuid())
+  item     Item   @relation(fields: [itemId], references: [id])
+  itemId   String
+  price    Float
+  bidder   Bidder @relation(fields: [bidderId], references: [id])
+  bidderId String
+}
+
+model Bidder {
+  id              String    @id @default(uuid())
+  name            String
+  email           String    @unique
+  contactNo       String    @unique
+  isVerified      Boolean   @default(false)
+  bids            Bid[]
+  toBeBoughtItems Item[]
+  boughtPayments  Payment[]
+}
+
+model Organiser {
+  id         String  @id @default(uuid())
+  name       String
+  email      String  @unique
+  isVerified Boolean @default(false)
+}
+
+model Auction {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  startTime   DateTime
+  endTime     DateTime
+  listedItems Item[]
+}
+
+model Payment {
+  id                String  @id @default(uuid())
+  item              Item    @relation(fields: [itemId], references: [id])
+  itemId            String  @unique
+  razorpayPaymentId String
+  bidder            Bidder? @relation(fields: [bidderId], references: [id])
+  bidderId          String?
+}
