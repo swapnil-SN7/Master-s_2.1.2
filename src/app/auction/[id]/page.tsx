@@ -4,9 +4,25 @@ import { Auction } from "@prisma/client";
 import axios from "axios";
 
 export default function Auctiondetails({ params }: { params: { id: string } }) {
-  const [auction, setAuction] = useState<Auction>();
+  const [auction, setAuction] = useState<
+    | {
+        title: string;
+        listedItems: {
+          id: string;
+          name: string;
+          description: string;
+          tags: string[];
+          has3dModel: boolean;
+          basePrice: number;
+          startTime: Date;
+          endTime: Date;
+          bidderId: string | null;
+          auctionId: string;
+        }[];
+      }
+    | undefined
+  >();
   console.log(auction);
-
 
   useEffect(() => {
     (async () => {
@@ -16,35 +32,28 @@ export default function Auctiondetails({ params }: { params: { id: string } }) {
       setAuction(res.data.auction_details);
     })();
   }, [params.id]);
-  
 
   return (
- 
     <div className="container">
-    <div>
-      {
-      auction.map((item, index) => (
-        <div key={index} className="auction">
-          <div className="Maintitle mx-auto">
-            <h3>{item.title}</h3>
+      <div>
+        {auction.map((item, index) => (
+          <div key={index} className="auction">
+            <div className="Maintitle mx-auto">
+              <h3>{item.title}</h3>
+            </div>
+            <div className="otherdetails">
+              <p>Description: {item.description}</p>
+              <p>Start Time: {item.startTime}</p>
+              <p>End Time: {item.endTime}</p>
+            </div>
+            <div className="grid grid-cols-5 grid-flow-row gap-4 my-10">
+              {item.listedItem.map((listed, idx) => (
+                <div key={idx} className="listed-item"></div>
+              ))}
+            </div>
           </div>
-          <div className="otherdetails">
-            <p>Description: {item.description}</p>
-            <p>Start Time: {item.startTime}</p>
-            <p>End Time: {item.endTime}</p>
-          </div>
-          <div className="grid grid-cols-5 grid-flow-row gap-4 my-10">
-            {item.listedItem.map((listed, idx) => (
-              <div key={idx} className="listed-item">
-               
-              </div>
-            ))}
-          </div>
-        </div>
-      ))
-      }
+        ))}
+      </div>
     </div>
-  </div>
-  
   );
 }
