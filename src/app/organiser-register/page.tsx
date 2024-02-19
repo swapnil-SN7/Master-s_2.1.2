@@ -17,7 +17,7 @@ export default function OrganiserRegister() {
   const submitForm = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const res = await axios.post("/api/organiserRegister", formData);
-    const id = res.data.id;
+    const id = res.data.org.id;
     localStorage.setItem("auction-org-id", id);
     router.push("/addAuction");
   };
