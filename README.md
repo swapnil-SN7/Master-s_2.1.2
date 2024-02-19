@@ -17,10 +17,10 @@ npm run dev
 ```
 
 ## How to?
-1. For registering the organiser, go to [link](http://localhost:3000/organiser-register).
-2. After registration, the organiser can login on this [link](http://localhost:3000/organiser-login).
-3. After logging in, the organiser can schedule a new auction on this [link](http://localhost:3000/addAuction).
-4. After scheduling an auction, the organiser can add items to this auction on this [link](http://localhost:3000/additem).
+1. For registering the organiser, go to [link](https://master-s-2-1-3.vercel.app/organiser-register).
+2. After registration, the organiser can login on this [link](https://master-s-2-1-3.vercel.app/organiser-login).
+3. After logging in, the organiser can schedule a new auction on this [link](https://master-s-2-1-3.vercel.app/addAuction).
+4. After scheduling an auction, the organiser can add items to this auction on this [link](https://master-s-2-1-3.vercel.app/additem).
 5. After clicking Finish, the auction is scheduled.
-6. A user can login using a Google account on the this [link](http://localhost:3000).
+6. A user can login using a Google account on the this [link](https://master-s-2-1-3.vercel.app).
 7. After logging in, the user will be able to go to any auction and bid for the items.
