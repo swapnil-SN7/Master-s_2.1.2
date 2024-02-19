@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import Landing from "@/components/Landing/Landing";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 function AuctionCard({ title, description, startTime, endTime }: Auction) {
   return <div>{/* display the auction card */}</div>;
@@ -53,6 +53,23 @@ export default function Home() {
 
   return (
     <>
+      <nav className="flex gap-2 justify-end items-center p-5">
+        <Image
+          src={data?.user?.image as string}
+          alt=""
+          width={40}
+          height={40}
+          className="rounded-full"
+        />
+        <p className="text-xl">{data?.user?.name}</p>
+        <button
+          className="rounded border px-2 py-1 bg-slate-50 text-lg"
+          onClick={(e) => signOut()}
+        >
+          Logout
+        </button>
+      </nav>
+
       <Landing />
 
       <div className="w-11/12 mx-auto p-7">

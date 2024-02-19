@@ -13,6 +13,7 @@ function Item({ item }: { item: Item }) {
   const bidderEmail = data?.user?.email;
 
   const handlePlaceBid: MouseEventHandler<HTMLButtonElement> = async (e) => {
+    setErrorMsg("");
     const res2 = await axios.get(`/api/getBidderDetails/${bidderEmail}`);
     const bidderId = res2.data.bidder.id;
 
