@@ -18,16 +18,15 @@ const Landing = ()=>{
     })();
   }, []);
 
- 
-  
   async function handleSearch(e: ChangeEvent<HTMLInputElement>): Promise<void> {
     try {
-      const name = e.target.value;
-      const searchRes = await axios.get(`/api/getAuctionByName/${name}`);
-      const result = searchRes.data.auctions;
+      let name = e.target.value;
+      const searchres = await axios.get(`/api/getAuctionByName/${name}`);
+      let result = searchres.data.auctions;
       console.log(result);
     } catch (error) {
-      console.error('Error during search:', error);
+      console.error("Error occurred during search:", error);
+      // Handle error here if necessary
     }
   }
   
