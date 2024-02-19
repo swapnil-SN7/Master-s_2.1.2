@@ -1,12 +1,16 @@
 "use client";
 import React, { useState } from "react";
-import { toast } from 'react-toastify';
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-
 const Page = () => {
-  const router=useRouter();
+  const router = useRouter();
+
+  const org_id = localStorage.getItem("auction-org-id");
+  if (!org_id || org_id === "") {
+    router.push("/organiser-login");
+  }
+
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -31,7 +35,12 @@ const Page = () => {
     e.preventDefault();
 
     // Check for empty submission
-    if (!formData.name || !formData.description || !formData.tag || !formData.base_price) {
+    if (
+      !formData.name ||
+      !formData.description ||
+      !formData.tag ||
+      !formData.base_price
+    ) {
       // toast.error("Please fill in all required fields.");
       console.log("Please fill in all required fields");
       return;
@@ -51,26 +60,25 @@ const Page = () => {
     //     });
 
     //     // toast.success('Item added successfully!');
-    //    
+    //
     //   })
     //   .catch((error) => {
     //     console.error('Error submitting form:', error);
     //     // toast.error("Item can't be added.");
     //   });
     try {
-
       await axios.post("/api/addItemToAuction", formData);
       // router.replace("/issues/new");
       setFormSuccess(true);
-      console.log("Form submitted succesfully")
-      setFormSuccessMessage("Item added successfully")
-      
-          // setFormSuccessMessage(response.data.submission_text);
-      
+      console.log("Form submitted succesfully");
+      setFormSuccessMessage("Item added successfully");
+
+      // setFormSuccessMessage(response.data.submission_text);
+
       // setsubmitting(false);
     } catch (error) {
       // setsubmitting(false);
-console.log("AN unexpected error occured")
+      console.log("AN unexpected error occured");
       // setError("An unexpected error occured");
     }
   };

@@ -7,7 +7,7 @@ export default function OrganiserRegister() {
   const router = useRouter();
   const [formData, setFormData] = useState({
     email: "",
-    password: "",
+    pass: "",
   });
 
   const [formSuccess, setFormSuccess] = useState(false);
@@ -15,7 +15,8 @@ export default function OrganiserRegister() {
 
   const submitForm = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const res = await axios.post("/api/organiserLogin", formData);
+    const res = await axios.post("/api/organisationLogin", formData);
+    console.log(res);
     const id = res.data.org.id;
     localStorage.setItem("auction-org-id", id);
     router.push("/addAuction");
@@ -59,9 +60,9 @@ export default function OrganiserRegister() {
               name="message"
               type="password"
               onChange={(e) =>
-                setFormData((prev) => ({ ...prev, password: e.target.value }))
+                setFormData((prev) => ({ ...prev, pass: e.target.value }))
               }
-              value={formData.password}
+              value={formData.pass}
               className="w-full px-3 py-2 border rounded-md"
             ></input>
           </div>

@@ -1,6 +1,7 @@
 "use client";
-import { useRouter } from "next/router";
-import React from "react";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import React, { ChangeEvent, FormEvent } from "react";
 import { useState, useEffect } from "react";
 const Page = () => {
   const router = useRouter();
@@ -21,7 +22,9 @@ const Page = () => {
     router.push("/organiser-login");
   }
 
-  const handleInput = (e) => {
+  const handleInput = (
+    e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
+  ) => {
     const fieldName = e.target.name;
     const fieldValue = e.target.value;
 
@@ -30,43 +33,49 @@ const Page = () => {
       [fieldName]: fieldValue,
     }));
   };
-  const submitForm = (e) => {
+  const submitForm = (e: FormEvent<HTMLFormElement>) => {
     // We don't want the page to refresh
     e.preventDefault();
 
-    const formURL = e.target.action;
+    const formURL = "/api/addAuction";
     const data = new FormData();
 
     // Turn our formData state into data we can use with a form submission
-    Object.entries(formData).forEach(([key, value]) => {
-      data.append(key, value);
-    });
+    // Object.entries(formData).forEach(([key, value]) => {
+    //   data.append(key, value);
+    // });
+    // data.append("org_id", localStorage.getItem("auction-org-id") as string);
+
+    if (typeof window !== "undefined") {
+      formData.org_id = localStorage.getItem("auction-org-id") as string;
+    }
 
     // POST the data to the URL of the form
-    fetch(formURL, {
-      method: "POST",
-      body: data,
-      headers: {
-        accept: "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setFormData({
-          title: "",
-          description: "",
-          start_time: "",
-          end_time: "",
-          org_id: "",
-        });
-
-        setFormSuccess(true);
-        setFormSuccessMessage(data.submission_text);
+    axios.post(formURL, formData).then((res) => {
+      setFormData({
+        title: "",
+        description: "",
+        start_time: "",
+        end_time: "",
+        org_id: "",
       });
+
+      setFormSuccess(true);
+      setFormSuccessMessage(res.data.submission_text);
+    });
   };
   return (
     <div className="max-w-md mx-auto p-4 flex align-center justify-center flex-col gap-5">
       <h1 className="text-center font-bold text-4xl mb-4">Add Auction</h1>
+      <button
+        onClick={(e) => {
+          localStorage.removeItem("auction-org-id");
+          router.push("/organiser-login");
+        }}
+        className="rounded border border-red-500 red text-red-500 w-fit px-2 py-1"
+      >
+        Logout
+      </button>
       {formSuccess ? (
         <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-2 mb-4">
           {formSuccessMessage}
@@ -154,27 +163,11 @@ const Page = () => {
             />
           </div>
 
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="org_id"
-            >
-              Organisation id
-            </label>
-            <input
-              type="number"
-              name="org_id"
-              onChange={handleInput}
-              value={formData.org_id}
-              className="w-full px-3 py-2 border rounded-md"
-            />
-          </div>
-
           <button
             type="submit"
             className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-300"
           >
-            Add Auction
+            Send message
           </button>
         </form>
       )}
