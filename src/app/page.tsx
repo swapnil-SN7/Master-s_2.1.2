@@ -117,22 +117,22 @@ export default function Home() {
               {upcomingAuctions.map((item, index) => (
                 <div
                   key={index}
-                  className="card w-1/2 flex gap-3 border rounded-lg border-[#AEE2FF] shadow-xl drop-shadow-lg p-4"
+                  className="card w-0.5/2 flex justify-center gap-2 border rounded-lg border-[#AEE2FF] shadow-xl drop-shadow-lg p-2 pb-[4%]"
                 >
-                  <div className="part1 ">
-                    <div>
+                  <div className="part1 m-1 mx-auto flex flex-col justify-center ">
+                    <div className=" mx-auto">
                       <Image
                         src="/images/auction.png"
                         alt=""
-                        height={50}
-                        width={50}
+                        height={150}
+                        width={170}
                       />
-                      <div>
-                        <p className="font-light">{item.id}</p>
-                        <p className=" font-bold"> {item.title}</p>
+                      <div className="mb-[5%]">
+                        
+                        <p className=" font-bold text-center "> {item.title}</p>
                       </div>
                     </div>
-                    <button className="w-full border rounded-lg border-blue-200 p-1 ">
+                    <button className="w-[80%] border flex gap-2 rounded-lg border-blue-200 p-1 mx-auto ">
                       <p className="text-sm">
                         Starts on : {item.startTime.toString()}
                       </p>
@@ -141,12 +141,10 @@ export default function Home() {
                       </p>
                     </button>
                   </div>
-                  <div className="part2">
-                    <h2 className="font-bold text-blue-700 text-xl mb-[9%]">
-                      {item.organiserId}
-                    </h2>
-                    <button className="border tracking tracking-wide border-[#AEE2FF] hover:border-[#B799FF] rounded-2xl bg-blue-500 p-1 ml-3">
-                      <p className="text-md font-bold text-white">Place Bid</p>
+                  <div className="part2 mt-28">
+                    
+                    <button className="border mt tracking tracking-wide border-[#AEE2FF] hover:border-[#B799FF] rounded-2xl bg-blue-500 p-2 ml-3">
+                      <p className="text-md font-bold text-white p-1">Place Bid</p>
                     </button>
                   </div>
                 </div>
