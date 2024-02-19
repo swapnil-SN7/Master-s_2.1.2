@@ -25,7 +25,11 @@ export async function POST(req: Request) {
       },
       select: {
         title: true,
-        listedItems: true,
+        listedItems: {
+          orderBy: {
+            id: "asc",
+          },
+        },
       },
     });
   } catch (err) {
