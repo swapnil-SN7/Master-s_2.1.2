@@ -16,7 +16,14 @@ export async function GET(req: Request) {
         id: item_id,
       },
       include: {
-        bid: true,
+        bid: {
+          select: {
+            id: true,
+          },
+          orderBy: {
+            id: "asc",
+          },
+        },
       },
     });
   } catch (err) {
