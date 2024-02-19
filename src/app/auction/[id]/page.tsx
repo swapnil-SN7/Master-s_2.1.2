@@ -25,6 +25,18 @@ export default function Auctiondetails({ params }: { params: { id: string } }) {
   >();
   console.log(auction);
 
+
+  const deleteItem = async (itemId: string) => {
+    try {
+      const response = await axios.post(`/api/deleteItemFromAuction`, { itemId });
+      // Handle success, update UI, show notifications, etc.
+      console.log('Item deleted successfully:', response.data);
+    } catch (error) {
+      // Handle error, show error messages, etc.
+      console.error('Error deleting item:', error);
+    }
+  };
+
   useEffect(() => {
     (async () => {
       const res = await axios.post("/api/getAuctionDetails", {
@@ -63,6 +75,10 @@ export default function Auctiondetails({ params }: { params: { id: string } }) {
                                   <div className="bg-[#FFD700] size-3  rounded-lg m-1 "></div>
                                   <span>Base Price:- {item.basePrice}</span>
                     </button>
+
+                    <button onClick={() => deleteItem(item.id)} className="border-white bottom-2 bg-red-700 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border m-4 p-2 flex justify-around content-baseline mx-auto">
+  Delete
+</button>
 
                     </div>
                    
