@@ -33,15 +33,11 @@ export async function GET(req: Request) {
     console.log(len);
     var current_price = item.basePrice;
 
-    if (len > 1) {
-      current_price = item.bid[len - 1].price;
-    }
-
     return NextResponse.json({
       status: "success",
       msg: "Item Data Fetched",
       item,
-      current_price,
+      current_price: item.currentPrice,
     });
   }
 }
