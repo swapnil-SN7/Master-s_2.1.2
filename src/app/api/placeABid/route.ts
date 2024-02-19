@@ -14,6 +14,7 @@ export async function POST(req: Request) {
     select: {
       bid: true,
       basePrice: true,
+      currentPrice: true,
     },
   });
 
@@ -22,7 +23,7 @@ export async function POST(req: Request) {
   }
 
   if (item.bid.length > 0) {
-    if (item.bid[item.bid.length - 1].price >= price) {
+    if (item.currentPrice >= price) {
       return NextResponse.json({
         status: "fail",
         msg: "Current Bid Less The Previous Bid",
@@ -45,6 +46,15 @@ export async function POST(req: Request) {
         });
       }
     }
+
+    var upt = await prisma.item.update({
+      where: {
+        id: item_id,
+      },
+      data: {
+        currentPrice: price,
+      },
+    });
 
     return NextResponse.json({
       status: "success",
@@ -75,6 +85,15 @@ export async function POST(req: Request) {
         });
       }
     }
+
+    var upt = await prisma.item.update({
+      where: {
+        id: item_id,
+      },
+      data: {
+        currentPrice: price,
+      },
+    });
 
     return NextResponse.json({
       status: "success",

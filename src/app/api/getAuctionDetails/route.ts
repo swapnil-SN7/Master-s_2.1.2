@@ -1,5 +1,7 @@
 import prisma from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
+import axios from "axios";
+import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
 /*
@@ -23,7 +25,11 @@ export async function POST(req: Request) {
       },
       select: {
         title: true,
-        listedItems: true,
+        listedItems: {
+          include: {
+            bid: true,
+          },
+        },
       },
     });
   } catch (err) {
@@ -37,5 +43,9 @@ export async function POST(req: Request) {
     }
   }
 
-  return NextResponse.json({ status: "success", auction_details: auc });
+  if (auc) {
+    return NextResponse.json({ status: "success", auction_details: auc });
+  } else {
+    return NextResponse.json({ status: "fail", msg: "No Auction Found" });
+  }
 }
