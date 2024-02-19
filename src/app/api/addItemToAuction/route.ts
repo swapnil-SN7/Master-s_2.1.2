@@ -58,6 +58,7 @@ export async function POST(req: Request) {
         description: desc,
         tags: tag,
         basePrice: basePrice,
+        currentPrice: 0,
         auctionId: auc_id,
         startTime: startTime,
         endTime: endTime,

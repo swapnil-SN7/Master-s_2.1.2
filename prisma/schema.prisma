@@ -18,7 +18,7 @@ model Item {
   tags         String[]
   has3dModel   Boolean
   basePrice    Float
-  currentPrice Float?
+  currentPrice Float
   startTime    DateTime
   endTime      DateTime
   bid          Bid[]
