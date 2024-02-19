@@ -24,7 +24,16 @@ export default function Auctiondetails({ params }: { params: { id: string } }) {
     | undefined
   >();
   console.log(auction);
+  const [bidAmount, setBidAmount] = useState('');
 
+  const handleBidAmountChange = (e) => {
+    setBidAmount(e.target.value);
+  };
+
+  const handlePlaceBid = () => {
+    // Handle placing the bid with the bidAmount state
+    console.log('Placing bid with amount:', bidAmount);
+  };
 
   const deleteItem = async (itemId: string) => {
     try {
@@ -97,8 +106,18 @@ export default function Auctiondetails({ params }: { params: { id: string } }) {
                     </button>
                     </div>
                     <div className="mx-auto flex justify-center gap-4">
-                    <button className="border ring-2 rounded-lg p-1 w-[50%] text-white bg-blue-700  "> Place  Bid </button>
-                       <input  className="rounded-md "  type="text" />
+                    <button
+        className="border ring-2 rounded-lg p-1 w-[50%] text-white bg-blue-700"
+        onClick={handlePlaceBid}
+      >
+        Place Bid
+      </button>
+      <input
+        className="rounded-md"
+        type="text"
+        value={bidAmount}
+        onChange={handleBidAmountChange}
+      />
                     </div>
 
                     </div>
