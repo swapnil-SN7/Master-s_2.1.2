@@ -2,8 +2,9 @@ import prisma from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 import { NextResponse } from "next/server";
 
-export async function POST(req: Request) {
-  const { email } = await req.json();
+export async function GET(req: Request) {
+  let email = await req.url.slice(req.url.lastIndexOf("/") + 1);
+  email = decodeURI(email);
 
   let bidder;
 

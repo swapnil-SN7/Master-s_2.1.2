@@ -15,6 +15,9 @@ export async function GET(req: Request) {
       where: {
         id: item_id,
       },
+      include: {
+        bid: true,
+      },
     });
   } catch (err) {
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
@@ -25,9 +28,20 @@ export async function GET(req: Request) {
     }
   }
 
-  return NextResponse.json({
-    status: "success",
-    msg: "Item Data Fetched",
-    item,
-  });
+  if (item) {
+    var len = item.bid.length;
+    console.log(len);
+    var current_price = item.basePrice;
+
+    if (len > 1) {
+      current_price = item.bid[len - 1].price;
+    }
+
+    return NextResponse.json({
+      status: "success",
+      msg: "Item Data Fetched",
+      item,
+      current_price,
+    });
+  }
 }
