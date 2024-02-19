@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import Landing from "@/components/Landing/Landing";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 
 function AuctionCard({ title, description, startTime, endTime }: Auction) {
   return <div>{/* display the auction card */}</div>;
@@ -14,6 +15,11 @@ function AuctionCard({ title, description, startTime, endTime }: Auction) {
 
 export default function Home() {
   const { push } = useRouter();
+
+  const { data, status } = useSession();
+  if (status !== "authenticated") {
+    push("/api/auth/signin");
+  }
   const [auctions, setAuctions] = useState<Auction[]>([]);
   console.log(auctions);
 
@@ -51,7 +57,7 @@ export default function Home() {
 
       <div className="w-11/12 mx-auto p-7">
         <div className="m-7 w-[90%] border border-blue-600 rounded-xl mx-auto shadow-[5px_5px_0px_0px_rgba(109,40,217)]">
-          <div className="All_data flex justify-between items-center gap-4">
+          <div className="All_data mx-auto ">
             <div className="leftpart p-4">
               <p className="p-2 font-extrabold text-2xl text-[#6900FF]">
                 Live Auction
@@ -66,11 +72,11 @@ export default function Home() {
               </div>
 
               {/* <div className="grid-flow-row grid-cols-1 gap-y-8 gap-x-4 sm:grid"> */}
-              <div className="flex gap-2 flex-wrap">
+              <div className="flex gap-2 flex-wrap justify-center mx-auto ali">
                 {liveAuctions.map((item, index) => (
                   <div
                     key={index}
-                    className="card h-[80%] w-1/2 bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 p-7 m-4 content-center mx-auto"
+                    className="card h-[80%] w-[50%] bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 p-7 m-4 content-center mx-auto"
                   >
                     <div className="content-center font-medium mx-auto">
                       <p className="font-medium text-blue-400 text-xl">
@@ -128,7 +134,6 @@ export default function Home() {
                         width={170}
                       />
                       <div className="mb-[5%]">
-                        
                         <p className=" font-bold text-center "> {item.title}</p>
                       </div>
                     </div>
@@ -142,9 +147,10 @@ export default function Home() {
                     </button>
                   </div>
                   <div className="part2 mt-28">
-                    
                     <button className="border mt tracking tracking-wide border-[#AEE2FF] hover:border-[#B799FF] rounded-2xl bg-blue-500 p-2 ml-3">
-                      <p className="text-md font-bold text-white p-1">Place Bid</p>
+                      <p className="text-md font-bold text-white p-1">
+                        Place Bid
+                      </p>
                     </button>
                   </div>
                 </div>

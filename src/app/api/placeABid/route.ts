@@ -59,7 +59,7 @@ export async function POST(req: Request) {
     return NextResponse.json({
       status: "success",
       msg: "Bid Placed",
-      current_Price: price,
+      current_price: price,
     });
   } else {
     if (item.basePrice > price) {
@@ -98,7 +98,7 @@ export async function POST(req: Request) {
     return NextResponse.json({
       status: "success",
       msg: "Bid Placed",
-      current_Price: price,
+      current_price: price,
     });
   }
 }

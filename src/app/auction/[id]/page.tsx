@@ -3,11 +3,34 @@ import { useState, useEffect, ChangeEvent, MouseEventHandler } from "react";
 import axios from "axios";
 import Image from "next/image";
 import { Item } from "@prisma/client";
+import { useSession } from "next-auth/react";
 
 function Item({ item }: { item: Item }) {
+  const { data } = useSession();
   const [bidPrice, setBidPrice] = useState(item.basePrice);
+  const [currentBid, setCurrentBid] = useState(item.basePrice);
+  const bidderEmail = data?.user?.email;
 
-  const handlePlaceBid: MouseEventHandler<HTMLButtonElement> = (e) => {};
+  const handlePlaceBid: MouseEventHandler<HTMLButtonElement> = async (e) => {
+    const res2 = await axios.get(`/api/getBidderDetails/${bidderEmail}`);
+    const bidderId = res2.data.bidder.id;
+
+    const res = await axios.post("/api/placeABid", {
+      bidder_id: bidderId,
+      price: bidPrice,
+      item_id: item.id,
+    });
+    console.log(res);
+    setCurrentBid(res.data.current_price);
+  };
+
+  useEffect(() => {
+    (async () => {
+      const res = await axios.get(`/api/ItemBids/${item.id}`);
+      console.log(res);
+      setCurrentBid(res.data.current_price);
+    })();
+  }, [item.id]);
 
   return (
     <div className="auction">
@@ -33,16 +56,8 @@ function Item({ item }: { item: Item }) {
           </button>
           <button className="border-white bottom-2  bg-gray-400 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border  m-4 p-2 flex justify-around content-baseline mx-auto">
             <div className="bg-[#FFD700] size-3  rounded-lg m-1 "></div>
-            <span>Current Price:- {item.basePrice}</span>
-            {/* TODO */}
+            <span>Current Price:- {currentBid}</span>
           </button>
-
-          {/* <button
-            onClick={() => deleteItem(item.id)}
-            className="border-white bottom-2 bg-red-700 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border m-4 p-2 flex justify-around content-baseline mx-auto"
-          >
-            Delete
-          </button> */}
         </div>
 
         <div className="flex justify-around gap-4">
@@ -50,12 +65,12 @@ function Item({ item }: { item: Item }) {
           <p className="text-sm">End Date:- {item.endTime.toString()}</p>
         </div>
         <div className="flex gap-5">
-          <button className="border-white bottom-2  bg-gray-400 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border  m-4 p-2 flex justify-around content-baseline mx-auto">
+          {/* <button className="border-white bottom-2  bg-gray-400 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border  m-4 p-2 flex justify-around content-baseline mx-auto">
             <div className="bg-[#2a97e5] size-3  rounded-lg m-1 "></div>
             <span className="drop-shadow-md text-sm font-medium">
               Bidder ID:- {item.bidderId}
             </span>
-          </button>
+          </button> */}
           <button className="border-white bottom-2  bg-gray-400 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border  m-4 p-2 flex justify-around content-baseline mx-auto">
             <div className="bg-[#2852d1] size-3  rounded-lg m-1 "></div>
             <span className="drop-shadow-md text-sm font-medium">
@@ -101,45 +116,6 @@ export default function Auctiondetails({ params }: { params: { id: string } }) {
       }
     | undefined
   >();
-  console.log(auction);
-  const [bidAmount, setBidAmount] = useState("");
-  const [bidderemail, setBidderemail] = useState("");
-
-  const handleBidAmountChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setBidAmount(e.target.value);
-  };
-  const handleBidemailChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setBidderemail(e.target.value);
-  };
-
-  const handlePlaceBid = async (id: String, email: String) => {
-    // Handle placing the bid with the bidAmount state
-    try {
-      console.log("Placing bid with amount:", bidAmount);
-
-      let bidder_res = await axios.post("/api/getBidderDetails", email);
-      let bidder_id = bidder_res.data.bidder.id;
-      let item_id = id;
-      await axios.post("/api/placeABid", { bidder_id, item_id, bidAmount });
-      console.log("Placed bid with amount", bidAmount, "for Item ID ", item_id);
-      alert(`You have successfully placed a bid of ${bidAmount} on this item.`);
-    } catch {
-      console.log("Bid not placed...");
-    }
-  };
-
-  const deleteItem = async (itemId: string) => {
-    try {
-      const response = await axios.post(`/api/deleteItemFromAuction`, {
-        itemId,
-      });
-      // Handle success, update UI, show notifications, etc.
-      console.log("Item deleted successfully:", response.data);
-    } catch (error) {
-      // Handle error, show error messages, etc.
-      console.error("Error deleting item:", error);
-    }
-  };
 
   useEffect(() => {
     (async () => {
