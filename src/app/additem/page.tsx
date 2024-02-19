@@ -8,8 +8,14 @@ const Page = () => {
   const router = useRouter();
 
   let org_id;
+  let auc_id: string | null;
+  let auc_start_time: string | null;
+  let auc_end_time: string | null;
   if (typeof window !== "undefined") {
     org_id = localStorage.getItem("auction-org-id");
+    auc_id = localStorage.getItem("auc-id");
+    auc_start_time = localStorage.getItem("auc-start-time");
+    auc_end_time = localStorage.getItem("auc-end-time");
   }
   if (!org_id || org_id === "") {
     router.push("/organiser-login");
@@ -20,7 +26,7 @@ const Page = () => {
     name: "",
     description: "",
     tag: "",
-    base_price: "",
+    base_price: 0,
   });
 
   const [formSuccess, setFormSuccess] = useState(false);
@@ -48,41 +54,20 @@ const Page = () => {
       !formData.tag ||
       !formData.base_price
     ) {
-      // toast.error("Please fill in all required fields.");
       console.log("Please fill in all required fields");
       return;
     }
 
-    // axios.post("/api/addItemToAuction", formData, {
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    // })
-    //   .then((response) => {
-    //     setFormData({
-    //       name: "",
-    //       description: "",
-    //       tag: "",
-    //       base_price: "",
-    //     });
-
-    //     // toast.success('Item added successfully!');
-    //
-    //   })
-    //   .catch((error) => {
-    //     console.error('Error submitting form:', error);
-    //     // toast.error("Item can't be added.");
-    //   });
     try {
       await axios.post("/api/addItemToAuction", {
         name: formData.name,
         desc: formData.description,
-        tag: formData.tag,
+        tag: [formData.tag],
         basePrice: formData.base_price,
         has3dModel: false,
-        startTime: null,
-        endTime: null,
-        auc_id: null,
+        startTime: auc_start_time,
+        endTime: auc_end_time,
+        auc_id: auc_id,
       });
       // router.replace("/issues/new");
       setFormSuccess(true);
