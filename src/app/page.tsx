@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import Landing from "@/components/Landing/Landing";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 
 function AuctionCard({ title, description, startTime, endTime }: Auction) {
   return <div>{/* display the auction card */}</div>;
@@ -14,6 +15,11 @@ function AuctionCard({ title, description, startTime, endTime }: Auction) {
 
 export default function Home() {
   const { push } = useRouter();
+
+  const { data, status } = useSession();
+  if (status !== "authenticated") {
+    push("/api/auth/signin");
+  }
   const [auctions, setAuctions] = useState<Auction[]>([]);
   console.log(auctions);
 
@@ -128,7 +134,6 @@ export default function Home() {
                         width={170}
                       />
                       <div className="mb-[5%]">
-                        
                         <p className=" font-bold text-center "> {item.title}</p>
                       </div>
                     </div>
@@ -142,9 +147,10 @@ export default function Home() {
                     </button>
                   </div>
                   <div className="part2 mt-28">
-                    
                     <button className="border mt tracking tracking-wide border-[#AEE2FF] hover:border-[#B799FF] rounded-2xl bg-blue-500 p-2 ml-3">
-                      <p className="text-md font-bold text-white p-1">Place Bid</p>
+                      <p className="text-md font-bold text-white p-1">
+                        Place Bid
+                      </p>
                     </button>
                   </div>
                 </div>
