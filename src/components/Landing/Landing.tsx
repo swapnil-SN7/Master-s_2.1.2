@@ -29,7 +29,7 @@ const Landing = ()=>{
       // Handle error here if necessary
     }
   }
-
+  
     return(
 
         <div className="part_one  mx-auto   border-gray-700  relative  pb-32 z-30 shadow-2xl  drop-shadow-md   border-top-none">
