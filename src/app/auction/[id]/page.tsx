@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import { Auction } from "@prisma/client";
 import axios from "axios";
 import Image from "next/image";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function Auctiondetails({ params }: { params: { id: string } }) {
   const [auction, setAuction] = useState<
     | {
@@ -44,7 +45,8 @@ export default function Auctiondetails({ params }: { params: { id: string } }) {
       let item_id=id;
        await axios.post("/api/placeABid", { bidder_id, item_id, bidAmount });
 console.log("Placed bid with amount",bidAmount,"for Item ID ",item_id);
-      alert(`You have successfully placed a bid of ${bidAmount} on this item.`);
+toast.success("Your bid placed successfully");
+      // alert(`You have successfully placed a bid of ${bidAmount} on this item.`);
       
     }catch{
 console.log("Bid not placed...")
@@ -56,9 +58,11 @@ console.log("Bid not placed...")
       const response = await axios.post(`/api/deleteItemFromAuction`, { itemId });
       // Handle success, update UI, show notifications, etc.
       console.log('Item deleted successfully:', response.data);
+      toast.success("Successfully removed from Auction!");
     } catch (error) {
       // Handle error, show error messages, etc.
       console.error('Error deleting item:', error);
+      
     }
   };
 
@@ -73,6 +77,8 @@ console.log("Bid not placed...")
 
   return (
     <div className="container mx-auto text-center">
+              <ToastContainer />
+
       <div className="maintitle mx-auto text-2xl font-semibold"> {auction?.title}</div>
       <div className="grid grid-cols-2 grid-flow-row gap-6 my-10 p-5">
         {auction?.listedItems.map((item, index) => (
