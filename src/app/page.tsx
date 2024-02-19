@@ -107,17 +107,17 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="m-7 w-[90%] border border-blue-600 rounded-xl mx-auto shadow-[5px_5px_0px_0px_rgba(109,40,217)]">
+        <div className="m-7 p-3 w-[90%] border border-blue-600 rounded-xl mx-auto shadow-[5px_5px_0px_0px_rgba(109,40,217)]">
           <div className="rightpart">
-            <div className="grid grid-cols-2 grid-flow-row gap-y-6 p-7 border rounded-lg ring-2 drop-shadow-xl content-center   w-[50%] mx-auto  mt-[7%]  mb-[4%]">
-              <h2 className="font-bold text-[#6900FF] text-lg">
-                Upcoming Auction
-              </h2>
-
+            <h2 className="font-bold text-[#6900FF] text-2xl m-4">
+              Upcoming Auction
+            </h2>
+            {/* <div className="grid grid-cols-2 grid-flow-row gap-y-6 p-7 rounded-lg content-center w-[50%] mx-auto mt-[7%] mb-[4%]"> */}
+            <div className="flex flex-wrap gap-2 justify-center">
               {upcomingAuctions.map((item, index) => (
                 <div
                   key={index}
-                  className="card flex gap-3 border rounded-lg border-[#AEE2FF] shadow-xl drop-shadow-lg p-4"
+                  className="card w-1/2 flex gap-3 border rounded-lg border-[#AEE2FF] shadow-xl drop-shadow-lg p-4"
                 >
                   <div className="part1 ">
                     <div>
