@@ -2,13 +2,13 @@
 
 import { ChangeEvent, useEffect, useState } from "react";
 import { FaSearchDollar } from "react-icons/fa";
-
 import Landing from "@/components/Landing/Landing";
 import Liveauction from "../components/Part2/Liveauction";
 import Card from "../components/Card/Card";
 import Image from "next/image";
 import Collections from "../components/Collections/Collections";
 import axios from "axios";
+import Allitem from "@/components/allitem/Allitem";
 
 export default function Home() {
   const [activeSearch, setActiveSearch] = useState([]);
@@ -47,7 +47,13 @@ export default function Home() {
         
           <div className="mx-auto w-[90%]">
           <Collections />
-            </div>       
+            </div>
+            <div className="mx-auto">
+            <Allitem/>       
+
+            </div>
+
+           
         
     </div>
   );

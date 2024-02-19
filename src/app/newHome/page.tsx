@@ -65,7 +65,7 @@ export default function Home() {
                 <Dropdown val={"Filter"} />
               </div>
 
-              <div className=" grid-cols-2 grid-flow-row gap-y-8 gap-x-4 sm:grid">
+              <div className=" grid-flow-overflow grid-flow-row gap-y-8 gap-x-4 sm:grid">
                 {liveAuctions.map((item, index) => (
                   <div
                     key={index}

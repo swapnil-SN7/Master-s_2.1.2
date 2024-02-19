@@ -34,9 +34,9 @@ export default function Auctiondetails({ params }: { params: { id: string } }) {
   }, [params.id]);
 
   return (
-    <div className="container">
+    <div className="container mx-auto text-center">
       <div className="maintitle mx-auto text-2xl font-semibold"> {auction?.title}</div>
-      <div className="grid grid-cols-4 grid-flow-row gap-6 my-10">
+      <div className="grid grid-cols-2 grid-flow-row gap-6 my-10 p-5">
         {auction?.listedItems.map((item, index) => (
           <div key={index} className="auction">
                     <div className="card card relative  h-[80%] w-[95%] bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 p-7 lg:h-fit lg:py-16  drop-shadow-lg ring-cyan-500 ">
@@ -70,7 +70,10 @@ export default function Auctiondetails({ params }: { params: { id: string } }) {
                                   <span className="drop-shadow-md text-sm font-medium">Auction Id:- {item.auctionId}</span>
                     </button>
                     </div>
-
+                    <div className="mx-auto flex justify-center gap-4">
+                    <button className="border ring-2 rounded-lg p-1 w-[50%] text-white bg-blue-700 hover:bg-blue-500  "> Place  Bid </button>
+                       <input  className="rounded-md "  type="text" />
+                    </div>
 
                     </div>
 
