@@ -25,11 +25,7 @@ export async function POST(req: Request) {
       },
       select: {
         title: true,
-        listedItems: {
-          include: {
-            bid: true,
-          },
-        },
+        listedItems: true,
       },
     });
   } catch (err) {
