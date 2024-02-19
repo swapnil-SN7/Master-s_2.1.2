@@ -52,10 +52,19 @@ export default function Auctiondetails({ params }: { params: { id: string } }) {
                         <button>{item.tags}</button>
                         <p className="bg-[#6900FF] rounded-md text-white p-1">Have 3d model : <span className="font-bold"> {item.has3dModel}</span></p>
                     </div>
+
+                    <div className="flex gap-3">
                     <button className="border-white bottom-2  bg-gray-400 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border  m-4 p-2 flex justify-around content-baseline mx-auto">
                                   <div className="bg-[#FFD700] size-3  rounded-lg m-1 "></div>
                                   <span>Base Price:- {item.basePrice}</span>
                     </button>
+                    <button className="border-white bottom-2  bg-gray-400 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border  m-4 p-2 flex justify-around content-baseline mx-auto">
+                                  <div className="bg-[#FFD700] size-3  rounded-lg m-1 "></div>
+                                  <span>Base Price:- {item.basePrice}</span>
+                    </button>
+
+                    </div>
+                   
                     <div className="flex justify-around gap-4">
                     <p className="text-sm">Start Date;- {item.startTime.toString()}</p>
                     <p className="text-sm">End Date;- {item.endTime.toString()}</p>
