@@ -174,7 +174,7 @@ const Page = () => {
             type="submit"
             className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-300"
           >
-            Send message
+            Add Auction
           </button>
         </form>
       )}
