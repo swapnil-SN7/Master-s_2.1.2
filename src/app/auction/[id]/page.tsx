@@ -108,7 +108,7 @@ export default function Auctiondetails({ params }: { params: { id: string } }) {
   const handleBidAmountChange = (e: ChangeEvent<HTMLInputElement>) => {
     setBidAmount(e.target.value);
   };
-  const handleBidemailChange = (e) => {
+  const handleBidemailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setBidderemail(e.target.value);
   };
 
