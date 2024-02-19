@@ -1,17 +1,22 @@
 "use client";
-import React, { useState } from "react";
+
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
 const Page = () => {
   const router = useRouter();
 
-  const org_id = localStorage.getItem("auction-org-id");
+  let org_id;
+  if (typeof window !== "undefined") {
+    org_id = localStorage.getItem("auction-org-id");
+  }
   if (!org_id || org_id === "") {
     router.push("/organiser-login");
   }
 
   const [formData, setFormData] = useState({
+    auc_id: "",
     name: "",
     description: "",
     tag: "",
@@ -21,7 +26,9 @@ const Page = () => {
   const [formSuccess, setFormSuccess] = useState(false);
   const [formSuccessMessage, setFormSuccessMessage] = useState("");
 
-  const handleInput = (e) => {
+  const handleInput = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     const fieldName = e.target.name;
     const fieldValue = e.target.value;
 
@@ -31,7 +38,7 @@ const Page = () => {
     }));
   };
 
-  const submitForm = async (e) => {
+  const submitForm = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // Check for empty submission
@@ -67,7 +74,16 @@ const Page = () => {
     //     // toast.error("Item can't be added.");
     //   });
     try {
-      await axios.post("/api/addItemToAuction", formData);
+      await axios.post("/api/addItemToAuction", {
+        name: formData.name,
+        desc: formData.description,
+        tag: formData.tag,
+        basePrice: formData.base_price,
+        has3dModel: false,
+        startTime: null,
+        endTime: null,
+        auc_id: null,
+      });
       // router.replace("/issues/new");
       setFormSuccess(true);
       console.log("Form submitted succesfully");
@@ -93,7 +109,7 @@ const Page = () => {
       ) : (
         <form
           method="POST"
-          action="http://localhost:3000/api/addItemToAuction"
+          action="/api/addItemToAuction"
           onSubmit={submitForm}
           className="mb-4"
         >

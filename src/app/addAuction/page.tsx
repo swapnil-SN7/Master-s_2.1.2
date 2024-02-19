@@ -17,7 +17,11 @@ const Page = () => {
   const [formSuccess, setFormSuccess] = useState(false);
   const [formSuccessMessage, setFormSuccessMessage] = useState("");
 
-  const org_id = localStorage.getItem("auction-org-id");
+  let org_id: any;
+  if (typeof window !== "undefined") {
+    org_id = localStorage.getItem("auction-org-id");
+  }
+
   if (!org_id || org_id === "") {
     router.push("/organiser-login");
   }
@@ -46,23 +50,33 @@ const Page = () => {
     // });
     // data.append("org_id", localStorage.getItem("auction-org-id") as string);
 
-    if (typeof window !== "undefined") {
-      formData.org_id = localStorage.getItem("auction-org-id") as string;
-    }
+    formData.org_id = org_id as string;
 
     // POST the data to the URL of the form
-    axios.post(formURL, formData).then((res) => {
-      setFormData({
-        title: "",
-        description: "",
-        start_time: "",
-        end_time: "",
-        org_id: "",
-      });
+    axios
+      .post(formURL, {
+        org_id: org_id,
+        auc_title: formData.title,
+        auc_dec: formData.description,
+        startTime: new Date(Date.parse(formData.start_time)),
+        endTime: new Date(Date.parse(formData.end_time)),
+      })
+      .then((res) => {
+        localStorage.setItem("auc-id", res.data.auction_data.id);
+        localStorage.setItem("auc-start-time", res.data.auction_data.startTime);
+        localStorage.setItem("auc-end-time", res.data.auction_data.endTime);
 
-      setFormSuccess(true);
-      setFormSuccessMessage(res.data.submission_text);
-    });
+        setFormData({
+          title: "",
+          description: "",
+          start_time: "",
+          end_time: "",
+          org_id: "",
+        });
+
+        setFormSuccess(true);
+        setFormSuccessMessage("Auction added");
+      });
   };
   return (
     <div className="max-w-md mx-auto p-4 flex align-center justify-center flex-col gap-5">
