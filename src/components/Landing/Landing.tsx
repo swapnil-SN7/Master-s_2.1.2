@@ -32,9 +32,9 @@ const Landing = ()=>{
   
     return(
 
-        <div className="part_one  mx-auto   border-gray-700  relative  pb-32 z-30 shadow-2xl  drop-shadow-md   border-top-none">
-        <div className="searchbar  flex justify-center mb-8  absolute -top-5 left-96 z-35">
-          <form className="w-[500px] relative">
+        <div className="part_one  mx-auto   border-gray-700 p-7  relative  pb-32 z-30 shadow-2xl  drop-shadow-md ">
+        <div className="searchbar  flex justify-center mb-8  z-35">
+          <form className="w-[30rem] relative">
             <div className="relative">
               <input
                 type="search"
@@ -49,7 +49,7 @@ const Landing = ()=>{
           </form>
         </div>
 
-        <div className="flex flex-row justify-center  mt-24">
+        <div className="flex flex-row justify-center flex-wrap md:flex-nowrap mt-24 mx-auto">
           <div className="leftpart pr-20 pt-[10%] ">
             <p className="text-2xl font-extrabold text-opacity-80 text-[#6900FF]">
               &quot;Unlock the thrill of winning with every click – bid, win,
@@ -80,11 +80,11 @@ const Landing = ()=>{
             />
 
             <div className="dropdown dropdown-right ml-4 flex mt-[12%]">
-              <button className="border-white bottom-2  text-center mx-auto bg-gray-400 rounded-2xl  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border  m-4 p-2 flex justify-around content-baseline">
+              <button className="border-white bottom-2  text-center mx-auto bg-gray-400 rounded-2xl  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border m-2 p-0  md:m-4 md:p-2 flex justify-around content-baseline">
                 <p className="text-sm text-center p-[1.2%]"> Highest Bid🔥</p>
               </button>
 
-              <button className="border-white bottom-2  bg-blue-700   rounded-2xl  backdrop-blur-sm  border  m-4 p-2 ">
+              <button className="border-white bottom-2  bg-blue-700   rounded-2xl  backdrop-blur-sm  border  m-1 p-0 md:m-4 md:p-2  ">
                 <span className=" text-2xl font-semibold text-white ">
                   Place Bid
                 </span>
