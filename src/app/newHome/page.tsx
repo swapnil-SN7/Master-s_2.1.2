@@ -47,8 +47,11 @@ export default function Home() {
       <Landing />
 
       <div className="w-11/12 mx-auto p-7">
-        <div></div>
-        <div className="All_data flex justify-between items-center gap-4">
+
+
+      <div className="m-7 w-[90%] border border-blue-600 rounded-xl mx-auto shadow-[5px_5px_0px_0px_rgba(109,40,217)]">
+          
+      <div className="All_data flex justify-between items-center gap-4">
           <div className="leftpart">
             <p className="p-2 font-extrabold text-2xl text-[#6900FF]">
               Live Auction
@@ -99,7 +102,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-
+          </div>
+        <div className="m-7 w-[90%] border border-blue-600 rounded-xl mx-auto shadow-[5px_5px_0px_0px_rgba(109,40,217)]">
         <div className="rightpart">
           <div className="grid grid-cols-2 grid-flow-row gap-y-6 p-7 border rounded-lg ring-2 drop-shadow-xl content-center   w-[50%] mx-auto  mt-[7%]  mb-[4%]">
             <h2 className="font-bold text-[#6900FF] text-lg">
@@ -145,6 +149,9 @@ export default function Home() {
             ))}
           </div>
         </div>
+         
+          </div>
+
       </div>
     </>
   );
