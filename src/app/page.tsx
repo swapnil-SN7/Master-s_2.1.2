@@ -65,11 +65,12 @@ export default function Home() {
                 <Dropdown val={"Filter"} />
               </div>
 
-              <div className=" grid-flow-overflow grid-flow-row gap-y-8 gap-x-4 sm:grid">
+              {/* <div className="grid-flow-row grid-cols-1 gap-y-8 gap-x-4 sm:grid"> */}
+              <div className="flex gap-2 flex-wrap">
                 {liveAuctions.map((item, index) => (
                   <div
                     key={index}
-                    className="card relative  h-[80%] w-[95%] bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 p-7 m-4 content-center mx-auto"
+                    className="card h-[80%] w-1/2 bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 p-7 m-4 content-center mx-auto"
                   >
                     <div className="content-center font-medium mx-auto">
                       <p className="font-medium text-blue-400 text-xl">
@@ -106,17 +107,17 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="m-7 w-[90%] border border-blue-600 rounded-xl mx-auto shadow-[5px_5px_0px_0px_rgba(109,40,217)]">
+        <div className="m-7 p-3 w-[90%] border border-blue-600 rounded-xl mx-auto shadow-[5px_5px_0px_0px_rgba(109,40,217)]">
           <div className="rightpart">
-            <div className="grid grid-cols-2 grid-flow-row gap-y-6 p-7 border rounded-lg ring-2 drop-shadow-xl content-center   w-[50%] mx-auto  mt-[7%]  mb-[4%]">
-              <h2 className="font-bold text-[#6900FF] text-lg">
-                Upcoming Auction
-              </h2>
-
+            <h2 className="font-bold text-[#6900FF] text-2xl m-4">
+              Upcoming Auction
+            </h2>
+            {/* <div className="grid grid-cols-2 grid-flow-row gap-y-6 p-7 rounded-lg content-center w-[50%] mx-auto mt-[7%] mb-[4%]"> */}
+            <div className="flex flex-wrap gap-2 justify-center">
               {upcomingAuctions.map((item, index) => (
                 <div
                   key={index}
-                  className="card flex gap-3 border rounded-lg border-[#AEE2FF] shadow-xl drop-shadow-lg p-4"
+                  className="card w-1/2 flex gap-3 border rounded-lg border-[#AEE2FF] shadow-xl drop-shadow-lg p-4"
                 >
                   <div className="part1 ">
                     <div>

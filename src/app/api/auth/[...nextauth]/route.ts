@@ -1,4 +1,5 @@
 import prisma from "@/lib/prisma";
+import { Prisma } from "@prisma/client";
 import NextAuth from "next-auth/next";
 import Google from "next-auth/providers/google";
 
@@ -13,12 +14,14 @@ const handler = NextAuth({
     async signIn({ user, account }) {
       if (account?.provider === "google") {
         try {
-          const record = prisma.bidder.findUnique({
+          const record = await prisma.bidder.findFirstOrThrow({
             where: {
               email: user.email as string,
             },
           });
-          if (!record) {
+          return true;
+        } catch (err) {
+          if (err instanceof Prisma.PrismaClientKnownRequestError) {
             const newUser = await prisma.bidder.create({
               data: {
                 email: user.email as string,
@@ -26,11 +29,8 @@ const handler = NextAuth({
                 contactNo: user.email as string,
               },
             });
-            console.log(newUser);
             return true;
           }
-        } catch (err) {
-          return false;
         }
       }
       return true;
