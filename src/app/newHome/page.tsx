@@ -37,7 +37,7 @@ export default function Home() {
         setAuctions(res.data.auctions);
       } catch (error) {
         // Handle the error, e.g., log it or show a user-friendly message
-        console.error("Error fetching auctions:", error.message);
+        
       }
     };
   
@@ -109,8 +109,9 @@ export default function Home() {
 
 
   </div>
-  <div className="rightpart w-full">
-   <div className="grid grid-cols-2 grid-flow-row gap-y-6 p-7 border rounded-lg ring-2 drop-shadow-xl content-center ">
+
+  <div className="rightpart">
+   <div className="grid grid-cols-2 grid-flow-row gap-y-6 p-7 border rounded-lg ring-2 drop-shadow-xl content-center   w-[50%] mx-auto  mt-[7%]  mb-[4%]">
    <h2 className="font-bold text-[#6900FF] text-lg">Upcoming Auction</h2>
 
    {upcomingAuctions.map((item, index) => (

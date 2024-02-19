@@ -18,12 +18,16 @@ const Landing = ()=>{
     })();
   }, []);
 
-  async function handleSearch(e: ChangeEvent<HTMLInputElement>): void {
-    let name= e.target.value;
-    const searchres=await axios.get(`/api/getAuctionByName/${name}`);
-    let  result =searchres.data.auctions;
-    console.log(result)
-    // throw new Error("Function not implemented.");
+  async function handleSearch(e: ChangeEvent<HTMLInputElement>): Promise<void> {
+    try {
+      let name = e.target.value;
+      const searchres = await axios.get(`/api/getAuctionByName/${name}`);
+      let result = searchres.data.auctions;
+      console.log(result);
+    } catch (error) {
+      console.error("Error occurred during search:", error);
+      // Handle error here if necessary
+    }
   }
 
     return(
@@ -38,7 +42,7 @@ const Landing = ()=>{
                 className="w-full text-cyan-50 p-4 bg-gray-400 rounded-full bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100"
                 onChange={(e) => handleSearch(e)}
               />
-              <button onClick={handleSearch} className="absolute right-1 top-1/2 -translate-y-1/2 p-4 bg-[#6900FF] rounded-full">
+              <button  className="absolute right-1 top-1/2 -translate-y-1/2 p-4 bg-[#6900FF] rounded-full">
                 <FaSearchDollar />
               </button>
             </div>

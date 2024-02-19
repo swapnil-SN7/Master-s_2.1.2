@@ -19,6 +19,8 @@ const Liveauction =()=>{
     })();
   }, []);
     return(
+
+      <div>
       <div className="w-11/12 mx-auto p-7">
 
 
@@ -55,10 +57,14 @@ const Liveauction =()=>{
        </div>
     
        </div>
-       <div className="rightpart">
+      
+    
+
+      </div>
+      <div className="rightpart">
 
 
-<div className="grid grid-cols-1 grid-flow-row gap-y-6 p-16 border rounded-lg ring-2 drop-shadow-xl w-full  ">
+<div className="grid grid-cols-1 grid-flow-row gap-y-6 p-16 border rounded-lg ring-2 drop-shadow-xl w-[50%] mx-auto  mt-[7%]  mb-[4%]">
    <h2 className="font-bold text-[#6900FF] text-lg">Top Bids</h2>
     <Smallcard/>
     <Smallcard/>
@@ -71,7 +77,6 @@ const Liveauction =()=>{
 </div>
 </div>
 
-    
 
       </div>
 
