@@ -40,7 +40,7 @@ export default function Home() {
       <Landing/>
    
       <div className="m-7 w-[90%] border border-blue-600 rounded-xl mx-auto shadow-[5px_5px_0px_0px_rgba(109,40,217)]">
-          <Liveauction />
+          
          
         </div>
 
