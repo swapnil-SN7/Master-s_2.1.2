@@ -12,20 +12,21 @@ datasource db {
 }
 
 model Item {
-  id          String   @id @default(uuid())
-  name        String
-  description String
-  tags        String[]
-  has3dModel  Boolean
-  basePrice   Float
-  startTime   DateTime
-  endTime     DateTime
-  bid         Bid[]
-  bidder      Bidder?  @relation(fields: [bidderId], references: [id])
-  bidderId    String?
-  auction     Auction  @relation(fields: [auctionId], references: [id])
-  auctionId   String
-  payment     Payment?
+  id           String   @id @default(uuid())
+  name         String
+  description  String
+  tags         String[]
+  has3dModel   Boolean
+  basePrice    Float
+  currentPrice Float?
+  startTime    DateTime
+  endTime      DateTime
+  bid          Bid[]
+  bidder       Bidder?  @relation(fields: [bidderId], references: [id])
+  bidderId     String?
+  auction      Auction  @relation(fields: [auctionId], references: [id])
+  auctionId    String
+  payment      Payment?
 }
 
 model Bid {
