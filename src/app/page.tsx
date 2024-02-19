@@ -65,11 +65,12 @@ export default function Home() {
                 <Dropdown val={"Filter"} />
               </div>
 
-              <div className=" grid-flow-overflow grid-flow-row gap-y-8 gap-x-4 sm:grid">
+              {/* <div className="grid-flow-row grid-cols-1 gap-y-8 gap-x-4 sm:grid"> */}
+              <div className="flex gap-2 flex-wrap">
                 {liveAuctions.map((item, index) => (
                   <div
                     key={index}
-                    className="card relative  h-[80%] w-[95%] bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 p-7 m-4 content-center mx-auto"
+                    className="card h-[80%] w-1/2 bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 p-7 m-4 content-center mx-auto"
                   >
                     <div className="content-center font-medium mx-auto">
                       <p className="font-medium text-blue-400 text-xl">
