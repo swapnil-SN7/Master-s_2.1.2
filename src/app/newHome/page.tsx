@@ -31,12 +31,19 @@ export default function Home() {
   });
 
   useEffect(() => {
-    (async () => {
-      const res = await axios.get("/api/getAllAuctions");
-      setAuctions(res.data.auctions);
-    })();
+    const fetchData = async () => {
+      try {
+        const res = await axios.get("/api/getAllAuctions");
+        setAuctions(res.data.auctions);
+      } catch (error) {
+        // Handle the error, e.g., log it or show a user-friendly message
+        console.error("Error fetching auctions:", error.message);
+      }
+    };
+  
+    fetchData();
   }, []);
-
+  
   return (
     <Landing/>>
 
