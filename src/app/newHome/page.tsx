@@ -5,12 +5,15 @@ import { Auction } from "@prisma/client";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Landing from "@/components/Landing/Landing";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 function AuctionCard({ title, description, startTime, endTime }: Auction) {
   return <div>{/* display the auction card */}</div>;
 }
 
 export default function Home() {
+  const { push } = useRouter();
   const [auctions, setAuctions] = useState<Auction[]>([]);
   console.log(auctions);
 
@@ -88,7 +91,10 @@ export default function Home() {
                   </div>
 
                   <div className=" mx-auto">
-                    <button className="border tracking tracking-wide border-[#AEE2FF] hover:border-[#B799FF] rounded-lg m-[2%]">
+                    <button
+                      onClick={(e) => push(`/auction/${item.id}`)}
+                      className="border tracking tracking-wide border-[#AEE2FF] hover:border-[#B799FF] rounded-lg m-[2%]"
+                    >
                       <p className="text-base p-1 text-blue-500">
                         View Collections
                       </p>
@@ -113,7 +119,7 @@ export default function Home() {
               >
                 <div className="part1 ">
                   <div>
-                    <img
+                    <Image
                       src="/images/auction.png"
                       alt=""
                       height={50}
