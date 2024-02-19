@@ -61,16 +61,19 @@ export default function Home() {
           height={40}
           className="rounded-full"
         />
-        <p className="text-xl">{data?.user?.name}</p>
+        <p className="text-xl ">{data?.user?.name}</p>
         <button
-          className="rounded border px-2 py-1 bg-slate-50 text-lg"
+          className=" border px-2 py-1 bg-slate-50 font-semibold text-blue-500  rounded-lg text-lg"
           onClick={(e) => signOut()}
         >
           Logout
         </button>
       </nav>
 
-      <Landing />
+          <div className="mt-0">
+          <Landing />
+          </div>
+     
 
       <div className="w-11/12 mx-auto p-7">
         <div className="m-7 w-[90%] border border-blue-600 rounded-xl mx-auto shadow-[5px_5px_0px_0px_rgba(109,40,217)]">
@@ -93,7 +96,7 @@ export default function Home() {
                 {liveAuctions.map((item, index) => (
                   <div
                     key={index}
-                    className="card h-[80%] w-[50%] bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 p-7 m-4 content-center mx-auto"
+                    className="card h-[80%]    w-[70%] md:w-[50%] bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 p-7 m-4 content-center mx-auto"
                   >
                     <div className="content-center font-medium mx-auto">
                       <p className="font-medium text-blue-400 text-xl">
@@ -105,11 +108,11 @@ export default function Home() {
                       <p>{item.description}</p>
                     </div>
 
-                    <div className="flex justify-around gap-4 m-4 border rounded-md p-2 border-[#AEE2FF]">
+                    <div className="flex justify-around flex-wrap md:flex-nowrap  m-2 p-4  gap-4  md:m-4 border rounded-md md:p-2 border-[#AEE2FF]">
                       <p className="text-sm">
                         Start Date;- {item.startTime.toString()}
                       </p>
-                      <p className="text-sm">
+                      <p className="text-sm ">
                         End Date;- {item.endTime.toString()}
                       </p>
                     </div>

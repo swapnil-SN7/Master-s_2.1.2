@@ -32,7 +32,7 @@ const Landing = ()=>{
   
     return(
 
-        <div className="part_one  mx-auto   border-gray-700 p-7  relative  pb-32 z-30 shadow-2xl  drop-shadow-md ">
+        <div className="part_one  mx-auto   border-gray-700 p-7   pb-32 z-30 shadow-2xl  mt-0 drop-shadow-md ">
         <div className="searchbar  flex justify-center mb-8  z-35">
           <form className="w-[30rem] relative">
             <div className="relative">
