@@ -1,7 +1,10 @@
 "use client";
+import { useRouter } from "next/router";
 import React from "react";
 import { useState, useEffect } from "react";
 const Page = () => {
+  const router = useRouter();
+
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -12,6 +15,11 @@ const Page = () => {
 
   const [formSuccess, setFormSuccess] = useState(false);
   const [formSuccessMessage, setFormSuccessMessage] = useState("");
+
+  const org_id = localStorage.getItem("auction-org-id");
+  if (!org_id || org_id === "") {
+    router.push("/organiser-login");
+  }
 
   const handleInput = (e) => {
     const fieldName = e.target.name;
@@ -45,11 +53,11 @@ const Page = () => {
       .then((response) => response.json())
       .then((data) => {
         setFormData({
-            title: "",
-            description: "",
-            start_time: "",
-            end_time: "",
-            org_id: "",
+          title: "",
+          description: "",
+          start_time: "",
+          end_time: "",
+          org_id: "",
         });
 
         setFormSuccess(true);
@@ -115,32 +123,38 @@ const Page = () => {
           </div>
 
           <div className="mb-4">
-      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="start_time">
-        Start time
-      </label>
-      <input
-        type="datetime-local"
-        name="start_time"
-        onChange={handleInput}
-        value={formData.start_time}
-        className="w-full px-3 py-2 border rounded-md"
-      />
-    </div>
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="start_time"
+            >
+              Start time
+            </label>
+            <input
+              type="datetime-local"
+              name="start_time"
+              onChange={handleInput}
+              value={formData.start_time}
+              className="w-full px-3 py-2 border rounded-md"
+            />
+          </div>
 
-    <div className="mb-4">
-      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="end_time">
-         End time
-      </label>
-      <input
-        type="datetime-local"
-        name="end_time"
-        onChange={handleInput}
-        value={formData.end_time}
-        className="w-full px-3 py-2 border rounded-md"
-      />
-    </div>
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="end_time"
+            >
+              End time
+            </label>
+            <input
+              type="datetime-local"
+              name="end_time"
+              onChange={handleInput}
+              value={formData.end_time}
+              className="w-full px-3 py-2 border rounded-md"
+            />
+          </div>
 
-    <div className="mb-4">
+          <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="org_id"
@@ -155,7 +169,6 @@ const Page = () => {
               className="w-full px-3 py-2 border rounded-md"
             />
           </div>
-         
 
           <button
             type="submit"
