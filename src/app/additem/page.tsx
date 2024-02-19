@@ -1,13 +1,17 @@
 "use client";
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { toast } from 'react-toastify';
+import axios from "axios";
+import { useRouter } from "next/navigation";
+
+
 const Page = () => {
+  const router=useRouter();
   const [formData, setFormData] = useState({
     name: "",
     description: "",
     tag: "",
     base_price: "",
-    has3dMode: "",
   });
 
   const [formSuccess, setFormSuccess] = useState(false);
@@ -22,40 +26,55 @@ const Page = () => {
       [fieldName]: fieldValue,
     }));
   };
-  const submitForm = (e) => {
-    // We don't want the page to refresh
+
+  const submitForm = async (e) => {
     e.preventDefault();
 
-    const formURL = e.target.action;
-    const data = new FormData();
+    // Check for empty submission
+    if (!formData.name || !formData.description || !formData.tag || !formData.base_price) {
+      // toast.error("Please fill in all required fields.");
+      console.log("Please fill in all required fields");
+      return;
+    }
 
-    // Turn our formData state into data we can use with a form submission
-    Object.entries(formData).forEach(([key, value]) => {
-      data.append(key, value);
-    });
+    // axios.post("/api/addItemToAuction", formData, {
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    // })
+    //   .then((response) => {
+    //     setFormData({
+    //       name: "",
+    //       description: "",
+    //       tag: "",
+    //       base_price: "",
+    //     });
 
-    // POST the data to the URL of the form
-    fetch(formURL, {
-      method: "POST",
-      body: data,
-      headers: {
-        accept: "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setFormData({
-          name: "",
-          description: "",
-          tag: "",
-          base_price: "",
-          has3dMode: "",
-        });
+    //     // toast.success('Item added successfully!');
+    //    
+    //   })
+    //   .catch((error) => {
+    //     console.error('Error submitting form:', error);
+    //     // toast.error("Item can't be added.");
+    //   });
+    try {
 
-        setFormSuccess(true);
-        setFormSuccessMessage(data.submission_text);
-      });
+      await axios.post("/api/addItemToAuction", formData);
+      // router.replace("/issues/new");
+      setFormSuccess(true);
+      console.log("Form submitted succesfully")
+      setFormSuccessMessage("Item added successfully")
+      
+          // setFormSuccessMessage(response.data.submission_text);
+      
+      // setsubmitting(false);
+    } catch (error) {
+      // setsubmitting(false);
+console.log("AN unexpected error occured")
+      // setError("An unexpected error occured");
+    }
   };
+
   return (
     <div className="max-w-md mx-auto p-4 flex align-center justify-center flex-col gap-5">
       <h1 className="text-center font-bold text-4xl mb-4">Add Items</h1>
@@ -66,7 +85,7 @@ const Page = () => {
       ) : (
         <form
           method="POST"
-          action="https://www.formbackend.com/f/664decaabbf1c319"
+          action="http://localhost:3000/api/addItemToAuction"
           onSubmit={submitForm}
           className="mb-4"
         >
@@ -85,19 +104,6 @@ const Page = () => {
               className="w-full px-3 py-2 border rounded-md"
             />
           </div>
-
-          {/* <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-            Email
-          </label>
-          <input
-            type="text"
-            name="email"
-            onChange={handleInput}
-            value={formData.email}
-            className="w-full px-3 py-2 border rounded-md"
-          />
-        </div> */}
 
           <div className="mb-4">
             <label
@@ -150,30 +156,11 @@ const Page = () => {
             />
           </div>
 
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="has3dMode"
-            >
-              Has 3D Mode
-            </label>
-            <select
-              name="has3dMode"
-              onChange={handleInput}
-              value={formData.has3dMode}
-              className="w-full px-3 py-2 border rounded-md"
-            >
-              <option value="">Select Tag</option>
-              <option value="true">Yes</option>
-              <option value="false">No</option>
-            </select>
-          </div>
-
           <button
             type="submit"
             className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-300"
           >
-            Send message
+            Add Item
           </button>
         </form>
       )}
