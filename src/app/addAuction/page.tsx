@@ -1,4 +1,5 @@
 "use client";
+import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { ChangeEvent, FormEvent } from "react";
 import { useState, useEffect } from "react";
@@ -40,32 +41,28 @@ const Page = () => {
     const data = new FormData();
 
     // Turn our formData state into data we can use with a form submission
-    Object.entries(formData).forEach(([key, value]) => {
-      data.append(key, value);
-    });
-    data.append("org_id", localStorage.getItem("auction-org-id") as string);
+    // Object.entries(formData).forEach(([key, value]) => {
+    //   data.append(key, value);
+    // });
+    // data.append("org_id", localStorage.getItem("auction-org-id") as string);
+
+    if (typeof window !== "undefined") {
+      formData.org_id = localStorage.getItem("auction-org-id") as string;
+    }
 
     // POST the data to the URL of the form
-    fetch(formURL, {
-      method: "POST",
-      body: data,
-      headers: {
-        accept: "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setFormData({
-          title: "",
-          description: "",
-          start_time: "",
-          end_time: "",
-          org_id: "",
-        });
-
-        setFormSuccess(true);
-        setFormSuccessMessage(data.submission_text);
+    axios.post(formURL, formData).then((res) => {
+      setFormData({
+        title: "",
+        description: "",
+        start_time: "",
+        end_time: "",
+        org_id: "",
       });
+
+      setFormSuccess(true);
+      setFormSuccessMessage(res.data.submission_text);
+    });
   };
   return (
     <div className="max-w-md mx-auto p-4 flex align-center justify-center flex-col gap-5">
