@@ -9,6 +9,7 @@ function Item({ item }: { item: Item }) {
   const { data } = useSession();
   const [bidPrice, setBidPrice] = useState(item.basePrice);
   const [currentBid, setCurrentBid] = useState(item.basePrice);
+  const [errorMsg, setErrorMsg] = useState("");
   const bidderEmail = data?.user?.email;
 
   const handlePlaceBid: MouseEventHandler<HTMLButtonElement> = async (e) => {
@@ -21,7 +22,12 @@ function Item({ item }: { item: Item }) {
       item_id: item.id,
     });
     console.log(res);
-    setCurrentBid(res.data.current_price);
+    if (res.data.status === "fail") {
+      setErrorMsg(res.data.msg);
+    } else {
+      setErrorMsg("");
+      setCurrentBid(res.data.current_price);
+    }
   };
 
   useEffect(() => {
@@ -78,6 +84,11 @@ function Item({ item }: { item: Item }) {
             </span>
           </button>
         </div>
+        {errorMsg !== "" ? (
+          <div className="text-red-500">{errorMsg}</div>
+        ) : (
+          <div></div>
+        )}
         <div className="mx-auto flex justify-center gap-4">
           <input
             className="rounded-md text-center"
@@ -98,24 +109,22 @@ function Item({ item }: { item: Item }) {
 }
 
 export default function Auctiondetails({ params }: { params: { id: string } }) {
-  const [auction, setAuction] = useState<
-    | {
-        title: string;
-        listedItems: {
-          id: string;
-          name: string;
-          description: string;
-          tags: string[];
-          has3dModel: boolean;
-          basePrice: number;
-          startTime: Date;
-          endTime: Date;
-          bidderId: string | null;
-          auctionId: string;
-        }[];
-      }
-    | undefined
-  >();
+  const [auction, setAuction] = useState<{
+    title: string;
+    listedItems: {
+      id: string;
+      name: string;
+      description: string;
+      tags: string[];
+      has3dModel: boolean;
+      basePrice: number;
+      currentPrice: number;
+      startTime: Date;
+      endTime: Date;
+      bidderId: string | null;
+      auctionId: string;
+    }[];
+  }>();
 
   useEffect(() => {
     (async () => {
