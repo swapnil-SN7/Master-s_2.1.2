@@ -25,14 +25,30 @@ export default function Auctiondetails({ params }: { params: { id: string } }) {
   >();
   console.log(auction);
   const [bidAmount, setBidAmount] = useState('');
+  const [bidderemail, setBidderemail] = useState('');
 
   const handleBidAmountChange = (e) => {
     setBidAmount(e.target.value);
   };
+  const handleBidemailChange = (e) => {
+    setBidderemail(e.target.value);
+  };
 
-  const handlePlaceBid = () => {
+  const handlePlaceBid = async (id:String,email:String) => {
     // Handle placing the bid with the bidAmount state
-    console.log('Placing bid with amount:', bidAmount);
+    try {
+      console.log('Placing bid with amount:', bidAmount);
+
+     let bidder_res= await axios.post("/api/getBidderDetails",email);
+      let bidder_id=bidder_res.data.bidder.id;
+      let item_id=id;
+       await axios.post("/api/placeABid", { bidder_id, item_id, bidAmount });
+console.log("Placed bid with amount",bidAmount,"for Item ID ",item_id);
+      alert(`You have successfully placed a bid of ${bidAmount} on this item.`);
+      
+    }catch{
+console.log("Bid not placed...")
+    }
   };
 
   const deleteItem = async (itemId: string) => {
@@ -108,7 +124,7 @@ export default function Auctiondetails({ params }: { params: { id: string } }) {
                     <div className="mx-auto flex justify-center gap-4">
                     <button
         className="border ring-2 rounded-lg p-1 w-[50%] text-white bg-blue-700"
-        onClick={handlePlaceBid}
+        onClick={()=>{handlePlaceBid(item.id,bidderemail)}}
       >
         Place Bid
       </button>
@@ -117,6 +133,12 @@ export default function Auctiondetails({ params }: { params: { id: string } }) {
         type="text"
         value={bidAmount}
         onChange={handleBidAmountChange}
+      />
+      <input
+        className="rounded-md"
+        type="text"
+        value={bidderemail}
+        onChange={handleBidemailChange}
       />
                     </div>
 
