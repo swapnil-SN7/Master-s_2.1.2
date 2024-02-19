@@ -79,7 +79,7 @@ console.log("AN unexpected error occured")
     <div className="max-w-md mx-auto p-4 flex align-center justify-center flex-col gap-5">
       <h1 className="text-center font-bold text-4xl mb-4">Add Items</h1>
       {formSuccess ? (
-        <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-2 mb-4">
+        <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-2 mb-4 rounded-2xl">
           {formSuccessMessage}
         </div>
       ) : (
