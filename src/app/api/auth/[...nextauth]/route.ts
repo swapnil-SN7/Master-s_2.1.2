@@ -26,6 +26,7 @@ const handler = NextAuth({
                 contactNo: user.email as string,
               },
             });
+            console.log(newUser);
             return true;
           }
         } catch (err) {
